@@ -1,4 +1,4 @@
-﻿namespace AvansDevOps.Domain.States.BacklogitemStates;
+﻿namespace AvansDevOps.Domain.Interfaces;
 
 public interface IBacklogitemState
 {

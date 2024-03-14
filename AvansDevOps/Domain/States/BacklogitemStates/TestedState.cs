@@ -1,4 +1,6 @@
-﻿namespace AvansDevOps.Domain.States.BacklogitemStates;
+﻿using AvansDevOps.Domain.Interfaces;
+
+namespace AvansDevOps.Domain.States.BacklogitemStates;
 
 public class TestedState : IBacklogitemState
 {

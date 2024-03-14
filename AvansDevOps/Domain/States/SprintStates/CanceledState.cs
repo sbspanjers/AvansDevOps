@@ -1,20 +1,20 @@
 ﻿using AvansDevOps.Domain.Interfaces;
 
-namespace AvansDevOps.Domain.States.BacklogitemStates;
+namespace AvansDevOps.Domain.States.SprintStates;
 
-public class ReadyForTestingState : IBacklogitemState
+public class CanceledState : ISprintState
 {
-    public void EditMetaDataBacklogitem()
+    public void EditSprintMetaData()
     {
         throw new NotImplementedException();
     }
 
-    public void GoToREadyForTesting()
+    public void FinishSprint()
     {
         throw new NotImplementedException();
     }
 
-    public void GoToToDo()
+    public void GotToFinishedState()
     {
         throw new NotImplementedException();
     }
