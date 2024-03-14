@@ -9,9 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Domain\Adapter\DevOpsAdapter\" />
-    <Folder Include="Domain\Factory\" />
     <Folder Include="Domain\Models\" />
-    <Folder Include="Domain\Export\" />
     <Folder Include="Domain\Observer\" />
   </ItemGroup>
 
