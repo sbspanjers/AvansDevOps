@@ -7,10 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Domain\Adapter\DevOpsAdapter\" />
-    <Folder Include="Domain\Models\" />
-    <Folder Include="Domain\Observer\" />
-  </ItemGroup>
-
 </Project>
