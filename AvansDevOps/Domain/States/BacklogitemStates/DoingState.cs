@@ -1,5 +1,6 @@
 ﻿using AvansDevOps.Domain.Interfaces;
 using AvansDevOps.Domain.Models;
+using AvansDevOps.Domain.Rules.NotifyRule;
 
 namespace AvansDevOps.Domain.States.BacklogitemStates;
 
@@ -10,6 +11,7 @@ public class DoingState : IBacklogitemState
     public DoingState(BacklogItem backlogitem)
     {
         this._backlogitem = backlogitem;
+        this._backlogitem.Sprint.NotifySubscribers(_backlogitem.getName() + " has been moved to doing", new GeneralRule());
     }
     
     public void EditMetaDataBacklogitem()
@@ -17,7 +19,7 @@ public class DoingState : IBacklogitemState
         throw new NotImplementedException();
     }
 
-    public void GoToREadyForTesting()
+    public void GoToReadyForTesting()
     {
         throw new NotImplementedException();
     }

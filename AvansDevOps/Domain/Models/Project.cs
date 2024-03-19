@@ -1,4 +1,5 @@
 ﻿using AvansDevOps.Domain.Interfaces;
+using AvansDevOps.Domain.Users;
 
 namespace AvansDevOps.Domain.Models;
 
@@ -9,6 +10,7 @@ public class Project
     private string _name;
     private IGit _gitFunctions;
     private SprintFactory _sprintFactory;
+    private ProductOwner ProductOwner;
     public Pipeline Pipeline { get; set; }
 
     public Project(string name, Pipeline pipeline, IGit git)

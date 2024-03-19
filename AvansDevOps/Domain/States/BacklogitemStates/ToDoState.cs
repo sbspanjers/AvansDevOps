@@ -1,5 +1,6 @@
 ﻿using AvansDevOps.Domain.Interfaces;
 using AvansDevOps.Domain.Models;
+using AvansDevOps.Domain.Rules.NotifyRule;
 
 namespace AvansDevOps.Domain.States.BacklogitemStates;
 
@@ -11,13 +12,14 @@ public class ToDoState : IBacklogitemState
     public ToDoState(BacklogItem backlogItem)
     {
         _backlogItem = backlogItem;
+
     }
     public void EditMetaDataBacklogitem()
     {
         throw new NotImplementedException();
     }
 
-    public void GoToREadyForTesting()
+    public void GoToReadyForTesting()
     {
         throw new NotImplementedException();
     }

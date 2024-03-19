@@ -1,13 +1,11 @@
 ﻿using AvansDevOps.Domain.Models;
-using AvansDevOps.Domain.Observer;
 
 namespace AvansDevOps.Domain.Interfaces;
-public abstract class Sprint
+public abstract class Sprint : IPublisher
 {
     protected ISprintState _sprintState;
     
     private IExportMethod _exportMethod;
-    private Publisher _publisher;
 
     public string Name { get; set;} = string.Empty;
     public DateTime StartDate { get; set;}
@@ -15,6 +13,8 @@ public abstract class Sprint
     public List<BacklogItem> BacklogItems { get; set;}
     public Pipeline Pipeline { get; set;}
     public List<User> Users { get; set;}
+
+    private List<ISubscriber> _subscribers = new();
     
     public Sprint() { }
 
@@ -60,4 +60,27 @@ public abstract class Sprint
 
     public abstract void FinishSprint();
     public abstract void CreateReview(string message);
+
+    public void AddSubscriber(ISubscriber subscriber)
+    {
+        this._subscribers.Add(subscriber);
+    }
+
+    public void RemoveSubscriber(ISubscriber subscriber)
+    {
+        this._subscribers.Remove(subscriber);
+    }
+
+    public void NotifySubscribers(string message, INotifyRule notifyRule)
+    {
+        var users = notifyRule.Filter(this.Users);
+
+        foreach (var user in users)
+        {
+            foreach (var subscriber in _subscribers)
+            {
+                subscriber.Notify(message, user.Name);
+            }
+        }
+    }
 }

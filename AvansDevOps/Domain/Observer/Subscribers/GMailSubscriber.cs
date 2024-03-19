@@ -4,9 +4,9 @@ namespace AvansDevOps.Domain.Observer.Subscribers;
 
 public class GMailSubscriber : ISubscriber
 {
-    public void Notify()
+    public void Notify(string message, string userName)
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"GMailSubscriber: {userName} received a message: {message}");
     }
 }
 

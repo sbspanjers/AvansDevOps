@@ -8,7 +8,7 @@ public class BacklogItem
     private string _name;
     private string _description;
     private List<SubTask> _subTasks;
-    private Sprint _sprint;
+    public Sprint Sprint { get; set; }
     private IBacklogitemState _state;
     private Project _project;
     public ReviewThread ReviewThread { get; set; } = null!;
@@ -39,7 +39,7 @@ public class BacklogItem
 
     public void SetSprint(Sprint sprint)
     {
-        _sprint = sprint;
+        Sprint = sprint;
     }
 
     public void Edit(string name, string description, List<SubTask> subTasks)

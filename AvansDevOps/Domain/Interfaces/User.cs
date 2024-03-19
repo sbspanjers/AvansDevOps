@@ -4,7 +4,7 @@ namespace AvansDevOps.Domain.Interfaces;
 
 public abstract class User
 {
-    private string _name;
+    public string Name { get; set; } = string.Empty;
     private string _email;
     private List<Project> _projects;
 

@@ -6,7 +6,7 @@ public interface IBacklogitemState
 
     void GoToToDo();
 
-    void GoToREadyForTesting();
+    void GoToReadyForTesting();
 
     void EditMetaDataBacklogitem();
 }

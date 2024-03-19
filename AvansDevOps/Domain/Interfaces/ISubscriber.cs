@@ -2,5 +2,5 @@
 
 public interface ISubscriber
 {
-    void Notify();
+    void Notify(string message, string userName);
 }

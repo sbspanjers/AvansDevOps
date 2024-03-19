@@ -4,9 +4,9 @@ namespace AvansDevOps.Domain.Observer.Subscribers;
 
 public class SlackSubscriber : ISubscriber
 {
-    public void Notify()
+    public void Notify(string message, string userName)
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"SlackSubscriber: {userName} received a message: {message}");
     }
 }
 
