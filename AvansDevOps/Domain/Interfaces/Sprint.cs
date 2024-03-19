@@ -1,4 +1,5 @@
 ﻿using AvansDevOps.Domain.Models;
+using AvansDevOps.Domain.States.SprintStates;
 
 namespace AvansDevOps.Domain.Interfaces;
 public abstract class Sprint : IPublisher
@@ -25,6 +26,7 @@ public abstract class Sprint : IPublisher
         this.EndDate = endDate;
         this.BacklogItems = new List<BacklogItem>();
         this.Users = new List<User>();
+        this._sprintState = new CreatedState(this);
     }
    
 
@@ -82,5 +84,11 @@ public abstract class Sprint : IPublisher
                 subscriber.Notify(message, user.Name);
             }
         }
+    }
+
+    public override string ToString()
+    {
+        //Return the name, start date and end date of the sprint and the current state of the sprint  and the backlog items by name and description each one should start on a new line
+        return $"Sprint: {this.Name}\nStart date: {this.StartDate}\nEnd date: {this.EndDate}\nState: {this._sprintState}\nBacklog items:\n{string.Join("\n", this.BacklogItems.Select(x => x.ToString()))}";
     }
 }

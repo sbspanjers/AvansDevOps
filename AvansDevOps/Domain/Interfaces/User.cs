@@ -38,15 +38,19 @@ public abstract class User
         backlogItem.NextState();
     }
 
-    public Sprint CreateSprint(Project project, string sprintName, DateTime startDate, DateTime endDate)
+    public Sprint CreateSprint(Project project, string sprintName, DateTime startDate, DateTime endDate, SprintFactory sprintFactory)
     {
-        project.CreateSprint(sprintName, startDate, endDate);
+        project.SetSprintFactory(sprintFactory);
+
+        Sprint createdSprint =  project.CreateSprint(sprintName, startDate, endDate);
+        createdSprint.Pipeline = project.Pipeline;
+
         return project.GetSprint(sprintName);
     }
 
-    public Sprint EditSprint(Project project, string sprintName, DateTime startDate, DateTime endDate)
+    public Sprint EditSprint(Project project, string sprintName, DateTime startDate, DateTime endDate, string newName)
     {
-        return project.GetSprint(sprintName).EditSprint(sprintName, startDate, endDate);
+        return project.GetSprint(sprintName).EditSprint(newName, startDate, endDate);
     }
 
     public string SeeCurrentSprintState(Project project, string sprintName)
@@ -98,4 +102,6 @@ public abstract class User
     {
         project.GetSprint(sprintName).CreateReview(message);
     }
+
+
 }

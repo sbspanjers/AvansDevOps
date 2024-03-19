@@ -4,6 +4,11 @@ namespace AvansDevOps.Domain.Factory;
 
 public class DeploymentSprint : Sprint
 {
+
+    public DeploymentSprint(string name, DateTime startDate, DateTime endDate) : base(name, startDate, endDate)
+    {
+        
+    }
     public override void FinishSprint()
     {
         Pipeline.Start(this);

@@ -48,4 +48,12 @@ public class BacklogItem
         this._description = description;
         this._subTasks = subTasks;
     }
+
+    public override string ToString()
+    {
+        //Name, description , subtasks if any
+
+        return $"{_name} - {_description} - {string.Join(",", _subTasks.Select(x => x.Name))}";
+
+    }
 }

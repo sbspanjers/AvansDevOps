@@ -1,4 +1,5 @@
-﻿using AvansDevOps.Domain.Interfaces;
+﻿using AvansDevOps.Domain.Adapter.DevOpsAdapter;
+using AvansDevOps.Domain.Interfaces;
 using AvansDevOps.Domain.Rules.NotifyRule;
 
 namespace AvansDevOps.Domain.Models;
@@ -8,6 +9,11 @@ public class Pipeline
     private IAvansDevOps devOps;
 
     public string Name { get; set; } = string.Empty;
+
+    public Pipeline()
+    {
+        this.devOps = new DevOpsAdapter();
+    }
 
     public void Start(Sprint sprint)
     {

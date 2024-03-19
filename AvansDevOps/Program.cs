@@ -1,38 +1,60 @@
-﻿
-
-using AvansDevOps.Domain.Adapter.DevOpsAdapter;
-using AvansDevOps.Domain.Adapter.GitAdapter;
+﻿using AvansDevOps.Domain.Adapter.GitAdapter;
 using AvansDevOps.Domain.Factory;
 using AvansDevOps.Domain.Interfaces;
 using AvansDevOps.Domain.Models;
+using AvansDevOps.Domain.Users;
 
-// Factory for creating the sprints
-SprintFactory DeploymentSprintFactory = new DeploymentSprintFactory();
-SprintFactory ReviewSprintFactory = new ReviewSprintFactory();
-
+//F01
 
 
-// Technologies
-IAvansDevOps avansDevOps = new DevOpsAdapter();
-IGit git = new GitAdapter();
 
-// F01: Als gebruiker wil ik een project aan kunnen maken
-Project picoParkProject = new("Picopark project", avansDevOps, git);
-//Dev pipeline??
-//Codebase??
+User stan = new ProductOwner() { Name = "Stan"};
+User stijn = new Scrummaster() { Name = "Stijn"};
 
-picoParkProject.SetSprintFactory(DeploymentSprintFactory);
-picoParkProject.CreateSprint("Deployment Sprint 1", DateTime.Now, DateTime.Now.AddDays(14));
 
-// F03: Als gebruiker wil ik een backlog item aan kunnen maken
-picoParkProject.AddBacklogItem(new BacklogItem("US1", "Een gebruiker wil poppetjes kunnen maken", picoParkProject));
-//ADD USERS
+Pipeline pipeline = new Pipeline();
 
-// F02: Als gebruiker wil ik requirements bij kunnen houden in een product backlog
-List<BacklogItem> requirements = picoParkProject.GetBacklogItems();
-BacklogItem requirement1 = picoParkProject.GetBacklogItem("US1");
+Project grindSchool = stan.CreateProject("GrindSchool", pipeline, new GitAdapter());
 
-// F04: Als gebruiker wil ik een backlog item aan kunnen passen
-picoParkProject.EditBacklogItem("US1", "Een gebruiker wil poppetjes kunnen maken", new List<SubTask> { new SubTask("doe iets") });
+// F03
+BacklogItem backlogItem1 = stan.CreateBacklogItem(grindSchool,"Item1", "Create a new website");
+BacklogItem backlogItem2 = stan.CreateBacklogItem(grindSchool,"Item2", "Create a new app");
+
+//  F02
+//foreach (var item in grindSchool.GetBacklogItems())
+//{
+//    Console.WriteLine(item.ToString());
+//}
+
+// F04
+stan.EditBacklogItem(grindSchool, "Item2", "Create a new API", new List<SubTask>() { new SubTask("Create database"), new SubTask("Deploy to Heroku") });
+//foreach (var item in grindSchool.GetBacklogItems())
+//{
+//    Console.WriteLine(item.ToString());
+//}
+
+// F06
+stan.CreateSprint(grindSchool, "Sprint 1", DateTime.Now, DateTime.Now.AddDays(14), new DeploymentSprintFactory());
+//Console.WriteLine(grindSchool.ToString());
+
+// F07
+stan.EditSprint(grindSchool, "Sprint 1", DateTime.Now, DateTime.Now.AddDays(14), "sprintertje 1");
+//Console.WriteLine(grindSchool.ToString());
+
+// F08
+stan.AddBacklogItemToSprint(grindSchool, "Item1", grindSchool.GetSprint("sprintertje 1"));
+stan.AddBacklogItemToSprint(grindSchool, "Item2", grindSchool.GetSprint("sprintertje 1"));
+//Console.WriteLine(grindSchool.ToString());
+
+// F09
+stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1");
+stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1");
+stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1");
+//Expected fase is AfterFinishedState
+Console.WriteLine(grindSchool.ToString());
+
+
+
+
 
 

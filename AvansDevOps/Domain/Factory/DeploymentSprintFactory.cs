@@ -7,6 +7,6 @@ public class DeploymentSprintFactory : SprintFactory
 
     public Sprint CreateSprint(string name, DateTime startDate, DateTime endDate)
     {
-        return new DeploymentSprint();
+        return new DeploymentSprint(name, startDate, endDate);
     }
 }

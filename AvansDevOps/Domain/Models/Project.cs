@@ -21,10 +21,11 @@ public class Project
         this._backlogItems = new();
         this._sprints = new();
     }
-    public void CreateSprint(string name, DateTime startDate, DateTime endDate)
+    public Sprint CreateSprint(string name, DateTime startDate, DateTime endDate)
     {
         Sprint sprint = this._sprintFactory.CreateSprint(name, startDate, endDate);
         this._sprints.Add(sprint);
+        return sprint;
     }
 
     public BacklogItem AddBacklogItem(BacklogItem backlogItem)
@@ -59,5 +60,11 @@ public class Project
     public Sprint GetSprint(string name)
     {
         return this._sprints.FirstOrDefault(x => x.Name == name)!;
+    }
+
+    public override string ToString()
+    {
+        //return the project and the sprints with details of the sprint
+        return $"Project: {this._name} \nSprints: {string.Join(", ", this._sprints.Select(x => x.ToString()))}";
     }
 }

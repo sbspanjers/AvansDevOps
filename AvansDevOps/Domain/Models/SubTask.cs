@@ -2,10 +2,10 @@
 
 public class SubTask
 {
-    private string _name;
+    public string Name { get; set; }
 
     public SubTask(string name)
     {
-        this._name = name;
+        this.Name = name;
     }
 }
