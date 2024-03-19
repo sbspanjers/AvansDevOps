@@ -4,23 +4,36 @@ namespace AvansDevOps.Domain.States.SprintStates;
 
 public class ErrorState : ISprintState
 {
-    public void EditSprintMetaData()
+    private Sprint _sprint;
+
+    public ErrorState(Sprint sprint)
     {
-        throw new NotImplementedException();
+        _sprint = sprint;
     }
 
-    public void FinishSprint()
+    public void CreateReview(string message)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Review not possible.");
+    }
+
+    public Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate)
+    {
+        this._sprint.Name = name;
+        return this._sprint;
     }
 
     public void GotToFinishedState()
     {
-        throw new NotImplementedException();
+        this._sprint.SetSprintState(new FinishedState(this._sprint));
     }
 
     public void NextPhase()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Sprint is in error state.");
+    }
+
+    public override string ToString()
+    {
+        return "ErrorState";
     }
 }

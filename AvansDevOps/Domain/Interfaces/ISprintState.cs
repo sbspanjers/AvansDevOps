@@ -4,9 +4,11 @@ public interface ISprintState
 {
     void NextPhase();
 
-    void EditSprintMetaData();
+    Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate);
 
     void GotToFinishedState();
 
-    void FinishSprint();
+    string ToString();
+
+    void CreateReview(string message);
 }

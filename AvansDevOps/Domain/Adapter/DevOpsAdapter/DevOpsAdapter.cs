@@ -1,9 +1,4 @@
 ﻿using AvansDevOps.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Adapter.DevOpsAdapter;
 
@@ -27,7 +22,7 @@ public class DevOpsAdapter : IAvansDevOps
         this.adaptee.Analyse();
     }
 
-    public void GetDeployments()
+    public void Deploy()
     {
         this.adaptee.Deploy();
     }

@@ -1,9 +1,18 @@
 ﻿using AvansDevOps.Domain.Interfaces;
+using AvansDevOps.Domain.Models;
 
 namespace AvansDevOps.Domain.States.BacklogitemStates;
 
 public class DoneState : IBacklogitemState
 {
+    private BacklogItem _backlogitem;
+
+    public DoneState(BacklogItem backlogitem)
+    {
+        this._backlogitem = backlogitem;
+    }
+
+
     public void EditMetaDataBacklogitem()
     {
         throw new NotImplementedException();
@@ -21,6 +30,6 @@ public class DoneState : IBacklogitemState
 
     public void NextPhase()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Backlogitem is already done");
     }
 }

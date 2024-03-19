@@ -4,13 +4,14 @@ namespace AvansDevOps.Domain.Factory;
 
 public class ReviewSprint : Sprint
 {
-    public override void Deploy()
+    public override void FinishSprint()
     {
-        throw new NotSupportedException();
+        Console.WriteLine("File uploaded for review sprint.");
+        _sprintState.NextPhase();
     }
 
-    public override void Upload()
+    public override void CreateReview(string message)
     {
-       // Upload function
+        Console.WriteLine("Review created.");
     }
 }

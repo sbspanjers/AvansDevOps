@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AvansDevOps.Domain.Interfaces;
+﻿namespace AvansDevOps.Domain.Interfaces;
 
 public interface IAvansDevOps
 {
@@ -18,9 +12,7 @@ public interface IAvansDevOps
 
     void GetAnalysis();
 
-    void GetDeployments();
+    void Deploy();
 
     void GetUtilities();
-
-
 }

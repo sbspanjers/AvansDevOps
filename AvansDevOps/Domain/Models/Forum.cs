@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AvansDevOps.Domain.Models;
+﻿namespace AvansDevOps.Domain.Models;
 
 public class Forum
 {
-    private List<ReviewThread> _threads;
+    public List<ReviewThread> Threads { get; set; }
+
+    public Forum()
+    {
+        this.Threads = new List<ReviewThread>();
+    }
 }

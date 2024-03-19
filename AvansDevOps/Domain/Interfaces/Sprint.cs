@@ -1,26 +1,30 @@
-﻿using AvansDevOps.Domain.Observer;
+﻿using AvansDevOps.Domain.Models;
+using AvansDevOps.Domain.Observer;
 
 namespace AvansDevOps.Domain.Interfaces;
 public abstract class Sprint
 {
-    private ISprintState _sprintState;
-
-    private string _name;
-    private DateTime _startDate;
-    private DateTime _endDate;
-
-
-    // backlogitems
-    // exportmethod
+    protected ISprintState _sprintState;
+    
+    private IExportMethod _exportMethod;
     private Publisher _publisher;
 
+    public string Name { get; set;} = string.Empty;
+    public DateTime StartDate { get; set;}
+    public DateTime EndDate { get; set;}
+    public List<BacklogItem> BacklogItems { get; set;}
+    public Pipeline Pipeline { get; set;}
+    public List<User> Users { get; set;}
+    
     public Sprint() { }
 
     public Sprint(string name, DateTime startDate, DateTime endDate)
     {
-        this._name = name;
-        this._startDate = startDate;
-        this._endDate = endDate;
+        this.Name = name;
+        this.StartDate = startDate;
+        this.EndDate = endDate;
+        this.BacklogItems = new List<BacklogItem>();
+        this.Users = new List<User>();
     }
    
 
@@ -29,16 +33,31 @@ public abstract class Sprint
         this._sprintState = sprintState;
     }
 
-    public void FinishSprint()
+    public void AddBacklogItem(BacklogItem backlogItem)
     {
-        // of reviewsprint
-        // of deploymentsprint
+        BacklogItems.Add(backlogItem);
+    }
+
+    public Sprint EditSprint(string name, DateTime startDate, DateTime endDate)
+    {
+        return this._sprintState.EditSprintMetaData(name, startDate, endDate);
+    }
+
+    public void NextPhase()
+    {
+        this._sprintState.NextPhase();
+    }
+
+    public void AddUserToSprint(User user)
+    {
+        this.Users.Add(user);
     }
 
     public void GenerateReport()
     {
-        // exportmethod
+        this._exportMethod.Export();
     }
-    public abstract void Upload();
-    public abstract void Deploy();  
+
+    public abstract void FinishSprint();
+    public abstract void CreateReview(string message);
 }

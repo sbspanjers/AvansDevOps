@@ -1,18 +1,16 @@
 ﻿using AvansDevOps.Domain.Interfaces;
-using System;
-
 
 namespace AvansDevOps.Domain.Factory;
 
 public class DeploymentSprint : Sprint
 {
-    public override void Deploy()
+    public override void FinishSprint()
     {
-        // Deploy function
+        Pipeline.StartPipeline();
     }
 
-    public override void Upload()
+    public override void CreateReview(string message)
     {
-        throw new NotSupportedException();
+        // Review not possible
     }
 }

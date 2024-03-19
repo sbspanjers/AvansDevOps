@@ -4,23 +4,42 @@ namespace AvansDevOps.Domain.States.SprintStates;
 
 public class AfterFinishedState : ISprintState
 {
-    public void EditSprintMetaData()
+    private Sprint _sprint;
+
+    public AfterFinishedState(Sprint sprint)
     {
-        throw new NotImplementedException();
+        _sprint = sprint;
+        FinishSprint();
     }
 
-    public void FinishSprint()
+    private void FinishSprint()
     {
-        throw new NotImplementedException();
+        this._sprint.FinishSprint();
+    }
+
+    public Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate)
+    {
+        this._sprint.Name = name;
+        return this._sprint;
     }
 
     public void GotToFinishedState()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Sprint is already finished.");
     }
 
     public void NextPhase()
     {
-        throw new NotImplementedException();
+        this._sprint.SetSprintState(new ClosedState(this._sprint));
+    }
+
+    public override string ToString()
+    {
+        return "AfterFinishedState";
+    }
+
+    public void CreateReview(string message)
+    {
+        Console.WriteLine("Review not possible.");
     }
 }

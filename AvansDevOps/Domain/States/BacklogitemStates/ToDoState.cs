@@ -1,6 +1,5 @@
 ﻿using AvansDevOps.Domain.Interfaces;
 using AvansDevOps.Domain.Models;
-using AvansDevOps.Domain.Observer;
 
 namespace AvansDevOps.Domain.States.BacklogitemStates;
 
@@ -30,6 +29,6 @@ public class ToDoState : IBacklogitemState
 
     public void NextPhase()
     {
-        throw new NotImplementedException();
+        _backlogItem.SetState(new DoingState(_backlogItem));
     }
 }

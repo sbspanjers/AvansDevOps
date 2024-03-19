@@ -1,7 +1,8 @@
 ﻿namespace AvansDevOps.Domain.Models;
 
 public class ReviewThread
-{
-    private List<Comment> _comments = new();
-    private BacklogItem _backlogItem;
+{    
+    public string Title { get; set; } = string.Empty;
+    public List<Comment> Comments = new();
+    public BacklogItem BacklogItem  { get; set; } = null!;
 }

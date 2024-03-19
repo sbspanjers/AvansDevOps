@@ -1,30 +1,26 @@
 ﻿using AvansDevOps.Domain.Interfaces;
+using AvansDevOps.Domain.States.BacklogitemStates;
 
 namespace AvansDevOps.Domain.Models;
 
 public class BacklogItem
 {
-    private string _name ;
+    private string _name;
     private string _description;
     private List<SubTask> _subTasks;
     private Sprint _sprint;
     private IBacklogitemState _state;
     private Project _project;
-    private ReviewThread _reviewThread;
+    public ReviewThread ReviewThread { get; set; } = null!;
 
-    public BacklogItem(string name, string description, Project project) { 
-
-        //Default values
-        _reviewThread = new ReviewThread();
+    public BacklogItem(string name, string description, Project project)
+    { 
         _subTasks = new List<SubTask>();
-        
-        //_state = new ToDoState();
+        _state = new ToDoState(this);
 
         _name = name;
         _description = description;
         _project = project;
-
-
     }
     public string getName()
     {
@@ -36,7 +32,10 @@ public class BacklogItem
         _state = state;
     }
 
-
+    public void NextState()
+    {
+        _state.NextPhase();
+    }
 
     public void SetSprint(Sprint sprint)
     {
@@ -49,5 +48,4 @@ public class BacklogItem
         this._description = description;
         this._subTasks = subTasks;
     }
-
 }

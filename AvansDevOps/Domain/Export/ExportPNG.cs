@@ -6,6 +6,6 @@ public class ExportPNG : IExportMethod
 {
     public void Export()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Exporting to PNG");
     }
 }

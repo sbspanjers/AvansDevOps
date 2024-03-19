@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AvansDevOps.Domain.Adapter.GitAdapter;
+﻿namespace AvansDevOps.Domain.Adapter.GitAdapter;
 
 // This class serves as a third party library, but is just Stubs
 

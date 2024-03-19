@@ -6,6 +6,6 @@ public class ExportPDF : IExportMethod
 {
     public void Export()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Exporting to PDF");
     }
 }

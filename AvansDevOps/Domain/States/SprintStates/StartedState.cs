@@ -4,23 +4,39 @@ namespace AvansDevOps.Domain.States.SprintStates;
 
 public class StartedState : ISprintState
 {
-    public void EditSprintMetaData()
+    private Sprint _sprint;    
+
+    public StartedState(Sprint sprint)
     {
-        throw new NotImplementedException();
+        _sprint = sprint;
     }
 
-    public void FinishSprint()
+    public void CreateReview(string message)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Review not possible.");
+    }
+
+    public Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate)
+    {
+        this._sprint.Name = name;
+        this._sprint.StartDate = startDate;
+        this._sprint.EndDate = endDate;
+
+        return this._sprint;
     }
 
     public void GotToFinishedState()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Sprint is in started state.");
     }
 
     public void NextPhase()
     {
-        throw new NotImplementedException();
+        this._sprint.SetSprintState(new FinishedState(this._sprint));
+    }
+
+    public override string ToString()
+    {
+        return "StartedState";
     }
 }

@@ -1,9 +1,17 @@
 ﻿using AvansDevOps.Domain.Interfaces;
+using AvansDevOps.Domain.Models;
 
 namespace AvansDevOps.Domain.States.BacklogitemStates;
 
 public class DoingState : IBacklogitemState
 {
+    private BacklogItem _backlogitem;
+
+    public DoingState(BacklogItem backlogitem)
+    {
+        this._backlogitem = backlogitem;
+    }
+    
     public void EditMetaDataBacklogitem()
     {
         throw new NotImplementedException();
@@ -21,6 +29,6 @@ public class DoingState : IBacklogitemState
 
     public void NextPhase()
     {
-        throw new NotImplementedException();
+        _backlogitem.SetState(new ReadyForTestingState(_backlogitem));
     }
 }
