@@ -8,14 +8,12 @@ public class Pipeline
 
     public string Name { get; set; } = string.Empty;
 
-    public void StartPipeline()
+    public void Start()
     {
-        this.devOps.Build();
-        this.devOps.Deploy();
         // ...
     }
 
-    public void StopPipeline()
+    public void Cancel()
     {
         // ...
     }

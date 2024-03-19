@@ -6,7 +6,7 @@ public class DeploymentSprint : Sprint
 {
     public override void FinishSprint()
     {
-        Pipeline.StartPipeline();
+        Pipeline.Start();
     }
 
     public override void CreateReview(string message)
