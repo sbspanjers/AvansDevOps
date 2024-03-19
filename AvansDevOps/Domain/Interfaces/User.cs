@@ -1,4 +1,5 @@
 ﻿using AvansDevOps.Domain.Models;
+using AvansDevOps.Domain.Users;
 
 namespace AvansDevOps.Domain.Interfaces;
 
@@ -43,6 +44,7 @@ public abstract class User
         project.SetSprintFactory(sprintFactory);
 
         Sprint createdSprint =  project.CreateSprint(sprintName, startDate, endDate);
+        createdSprint.Users.Add( new Scrummaster() { Name = "Stijn" }); //Moet nog gefixt worden
         createdSprint.Pipeline = project.Pipeline;
 
         return project.GetSprint(sprintName);

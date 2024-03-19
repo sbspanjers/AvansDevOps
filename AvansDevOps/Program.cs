@@ -2,6 +2,7 @@
 using AvansDevOps.Domain.Factory;
 using AvansDevOps.Domain.Interfaces;
 using AvansDevOps.Domain.Models;
+using AvansDevOps.Domain.Observer.Subscribers;
 using AvansDevOps.Domain.Users;
 
 //F01
@@ -9,7 +10,7 @@ using AvansDevOps.Domain.Users;
 
 
 User stan = new ProductOwner() { Name = "Stan"};
-User stijn = new Scrummaster() { Name = "Stijn"};
+;
 
 
 Pipeline pipeline = new Pipeline();
@@ -47,6 +48,7 @@ stan.AddBacklogItemToSprint(grindSchool, "Item2", grindSchool.GetSprint("sprinte
 //Console.WriteLine(grindSchool.ToString());
 
 // F09
+grindSchool.GetSprint("sprintertje 1").AddSubscriber(new WhatsappSubscriber());
 stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1");
 stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1");
 stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1");

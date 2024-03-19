@@ -19,7 +19,7 @@ public class Pipeline
     {
         int random = new Random().Next(0, 2); 
         // can go well
-        if(random == 1)
+        if(false)
         {
             devOps.Deploy();
         }
