@@ -8,23 +8,20 @@ public abstract class Sprint
     private string _name;
     private DateTime _startDate;
     private DateTime _endDate;
-    private IAvansDevOps _devOpsFunctions;
-    private IGit _gitFunctions;
+
 
     // backlogitems
     // exportmethod
     private Publisher _publisher;
 
+    public Sprint() { }
 
-    public Sprint(string name, DateTime startDate, DateTime endDate, IAvansDevOps devOpsFunctions, IGit gitFunctions)
+    public Sprint(string name, DateTime startDate, DateTime endDate)
     {
         this._name = name;
         this._startDate = startDate;
         this._endDate = endDate;
-        this._gitFunctions = gitFunctions;
-        this._devOpsFunctions = devOpsFunctions;
     }
-    public Sprint() { }
    
 
     public void SetSprintState(ISprintState sprintState)

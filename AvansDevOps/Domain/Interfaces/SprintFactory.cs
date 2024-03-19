@@ -2,5 +2,5 @@
 
 public interface SprintFactory
 {
-     Sprint CreateSprint(Sprint sprint);
+     Sprint CreateSprint(string name, DateTime startDate, DateTime endDate);
 }

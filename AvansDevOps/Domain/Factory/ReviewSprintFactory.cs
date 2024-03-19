@@ -4,7 +4,8 @@ namespace AvansDevOps.Domain.Factory;
 
 public class ReviewSprintFactory : SprintFactory
 {
-    public Sprint CreateSprint(Sprint sprint)
+
+    public Sprint CreateSprint(string name, DateTime startDate, DateTime endDate)
     {
         return new ReviewSprint();
     }
