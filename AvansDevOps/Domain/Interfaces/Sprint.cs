@@ -1,22 +1,22 @@
 ﻿using AvansDevOps.Domain.Models;
 using AvansDevOps.Domain.States.SprintStates;
+using AvansDevOps.Domain.Users;
 
 namespace AvansDevOps.Domain.Interfaces;
 public abstract class Sprint : IPublisher
 {
     protected ISprintState _sprintState;
-    
-    private IExportMethod _exportMethod;
 
-    public string Name { get; set;} = string.Empty;
-    public DateTime StartDate { get; set;}
-    public DateTime EndDate { get; set;}
-    public List<BacklogItem> BacklogItems { get; set;}
-    public Pipeline Pipeline { get; set;}
-    public List<User> Users { get; set;}
+
+    public string Name { get; set; } = string.Empty;
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
+    public List<BacklogItem> BacklogItems { get; set; }
+    public Pipeline Pipeline { get; set; }
+    public List<User> Users { get; set; }
 
     private List<ISubscriber> _subscribers = new();
-    
+
     public Sprint() { }
 
     public Sprint(string name, DateTime startDate, DateTime endDate)
@@ -28,7 +28,7 @@ public abstract class Sprint : IPublisher
         this.Users = new List<User>();
         this._sprintState = new CreatedState(this);
     }
-   
+
 
     public ISprintState SetSprintState(ISprintState sprintState)
     {
@@ -51,14 +51,27 @@ public abstract class Sprint : IPublisher
         this._sprintState.NextPhase();
     }
 
-    public void AddUserToSprint(User user)
+    public bool AddUserToSprint(User user)
     {
-        this.Users.Add(user);
+        if (user is Scrummaster && this.Users.Any(x => x is Scrummaster))
+        {
+            Console.WriteLine($"{user.Name} is not able to add to sprint as Scrummaster");
+        }
+        else
+        {
+            //Only add the user if it is not already in the list
+            if (!this.Users.Contains(user))
+            {
+                this.Users.Add(user);
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void GenerateReport()
+    public void GenerateReport(IExportMethod method)
     {
-        this._exportMethod.Export();
+        method.Export(this);
     }
 
     public abstract bool FinishSprint();

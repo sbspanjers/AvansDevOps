@@ -9,4 +9,7 @@ public interface IBacklogitemState
     void GoToReadyForTesting();
 
     void EditMetaDataBacklogitem();
+
+
+    void AddCommentToBacklogItemReviewThread(string text, User user);
 }

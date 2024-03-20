@@ -7,13 +7,18 @@ namespace AvansDevOps.Domain.States.BacklogitemStates;
 public class TestedState : IBacklogitemState
 {
 
-    private BacklogItem _backlogitem;
+    private BacklogItem _backlogItem;
 
-    public TestedState(BacklogItem backlogitem)
+    public TestedState(BacklogItem backlogItem)
     {
-        _backlogitem = backlogitem;
-        this._backlogitem.Sprint.NotifySubscribers(_backlogitem.getName() + " has been moved to Tested", new GeneralRule());
+        _backlogItem = backlogItem;
+        this._backlogItem.Sprint.NotifySubscribers(_backlogItem.getName() + " has been moved to Tested", new GeneralRule());
 
+    }
+
+    public void AddCommentToBacklogItemReviewThread(string text, User user)
+    {
+        _backlogItem.ReviewThread.Comments.Add(Comment.CreateComment(text, user));
     }
 
     public void EditMetaDataBacklogitem()
@@ -28,12 +33,12 @@ public class TestedState : IBacklogitemState
 
     public void GoToToDo()
     {
-        _backlogitem.Sprint.NotifySubscribers(_backlogitem.getName() + " has been moved to ToDo", new ScrummasterRule());
-        _backlogitem.SetState(new ToDoState(_backlogitem));
+        _backlogItem.Sprint.NotifySubscribers(_backlogItem.getName() + " has been moved to ToDo", new ScrummasterRule());
+        _backlogItem.SetState(new ToDoState(_backlogItem));
     }
 
     public void NextPhase()
     {
-        _backlogitem.SetState(new DoneState(_backlogitem)); 
+        _backlogItem.SetState(new DoneState(_backlogItem)); 
     }
 }

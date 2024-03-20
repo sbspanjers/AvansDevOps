@@ -13,5 +13,6 @@ public interface ISprintState
     void CreateReview(string message);
 
     void FinishSprint();
+
     void UploadDocument(string documentName, string documentContent);
 }

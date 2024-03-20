@@ -13,7 +13,12 @@ public class DoingState : IBacklogitemState
         this._backlogItem = backlogitem;
         this._backlogItem.Sprint.NotifySubscribers(_backlogItem.getName() + " has been moved to doing", new GeneralRule());
     }
-    
+
+    public void AddCommentToBacklogItemReviewThread(string text, User user)
+    {
+        _backlogItem.ReviewThread.Comments.Add(Comment.CreateComment(text, user));
+    }
+
     public void EditMetaDataBacklogitem()
     {
         throw new NotImplementedException();

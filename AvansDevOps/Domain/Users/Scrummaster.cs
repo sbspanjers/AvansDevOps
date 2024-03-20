@@ -5,6 +5,14 @@ namespace AvansDevOps.Domain.Users;
 
 public class Scrummaster : User
 {
+    public override void AssignUserToProject(Project project, User user)
+    {
+        if (!user.Projects.Contains(project))
+        {
+            user.Projects.Add(project);
+        }
+    }
+
     public void CancelPipeline(Project project, string sprintName)
     {
         project.Pipeline.Cancel(project.GetSprint(sprintName));

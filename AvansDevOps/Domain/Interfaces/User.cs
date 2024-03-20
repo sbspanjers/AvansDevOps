@@ -6,8 +6,7 @@ namespace AvansDevOps.Domain.Interfaces;
 public abstract class User
 {
     public string Name { get; set; } = string.Empty;
-    private string _email;
-    private List<Project> _projects;
+    public List<Project> Projects { get; set; } = new();
 
     public Project CreateProject(string name, Pipeline pipeline, IGit git)
     {
@@ -43,7 +42,6 @@ public abstract class User
     {
 
         Sprint createdSprint =  project.CreateSprint(sprintName, startDate, endDate, sprintFactory);
-        createdSprint.Users.Add( new Scrummaster() { Name = "Stijn" }); //Moet nog gefixt worden
 
         return project.GetSprint(sprintName);
     }
@@ -86,21 +84,25 @@ public abstract class User
         return reviewThread;
     }
 
-    public Comment AddCommentToReviewThread(ReviewThread reviewThread, string text)
+    public void AddCommentToReviewThread(ReviewThread reviewThread, string text)
     {
-        var comment = Comment.CreateComment(text, this);
-        reviewThread.Comments.Add(comment);
-        return comment;
+         reviewThread.BacklogItem.State.AddCommentToBacklogItemReviewThread(text, this);
+        
     }
 
-    public void CreateReport(Project project, string sprintName)
+    public void CreateReport(Project project, string sprintName, IExportMethod exportMethod)
     {
-        project.GetSprint(sprintName).GenerateReport();
+        project.GetSprint(sprintName).GenerateReport(exportMethod);
     }
 
     public void AddUserToSprint(Project project, string sprintName, User user)
     {
-        project.GetSprint(sprintName).AddUserToSprint(user);
+        var addSuccess = project.GetSprint(sprintName).AddUserToSprint(user);
+        if (!user.Projects.Contains(project) && addSuccess)
+        {
+            user.Projects.Add(project);
+        }
+
     }
 
     public void CreateReview(Project project, string sprintName, string message)
@@ -120,5 +122,12 @@ public abstract class User
         }
     }
 
+    public abstract void AssignUserToProject(Project project, User user);
+
     public abstract void UploadDocumentToFinishReviewSpint(Project project, string sprintName, string documentName, string documentContent);
+
+    public override string ToString()
+    {
+        return $"User: \n{Name} \nRole: {this.GetType()} \nProjects: {string.Join(", ", this.Projects.Select(x => x.Name))}";
+    }
 }

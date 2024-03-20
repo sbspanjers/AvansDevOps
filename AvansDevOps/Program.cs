@@ -1,4 +1,5 @@
 ﻿using AvansDevOps.Domain.Adapter.GitAdapter;
+using AvansDevOps.Domain.Export;
 using AvansDevOps.Domain.Factory;
 using AvansDevOps.Domain.Interfaces;
 using AvansDevOps.Domain.Models;
@@ -90,14 +91,35 @@ stan.CreateReview(grindSchool, "ReviewSprint", "Dit is een review");
 
 // F17
 User stijn = new Scrummaster() { Name = "Stijn" };
-stan.UploadDocumentToFinishReviewSpint(grindSchool, "ReviewSprint", "Dit is een document", "Dit is de content van het document");
+//stijn.UploadDocumentToFinishReviewSpint(grindSchool, "ReviewSprint", "Dit is een document", "Dit is de content van het document");
+
+Console.WriteLine(grindSchool.GetSprint("ReviewSprint").ToString());
 
 // F18
+Forum forum = new Forum();
+var thread = stan.CreateReviewThread(grindSchool, "Item1", "Review thread", forum);
+stan.MoveBacklogItemToNextState(grindSchool, "Item1"); // Todo -> doing
+stan.MoveBacklogItemToNextState(grindSchool, "Item1"); // Doing -> ReadyForTesting
+stan.MoveBacklogItemToNextState(grindSchool, "Item1"); // ReadyForTesting -> Tested
+stan.AddCommentToReviewThread(thread, "Dit is een noob feature");
+stan.MoveBacklogItemToNextState(grindSchool, "Item1"); // Tested -> Done
 
-//Console.WriteLine(grindSchool.GetSprint("ReviewSprint").ToString());
+Console.WriteLine(forum.ToString());
 
-//Forum forum = new Forum();
-//var thread = stan.CreateReviewThread(grindSchool, "Item1", "Review thread", forum);
-//stan.AddCommentToReviewThread(thread, "Dit is een noob feature");
+// F19 & F20
+//stan.CreateReport(grindSchool, "ReviewSprint", new ExportPNG());
 
-//Console.WriteLine(forum.ToString());
+// F21
+User niek = new Scrummaster() { Name = "Niek" };
+
+stan.AddUserToSprint(grindSchool, "ReviewSprint", stan);
+stan.AddUserToSprint(grindSchool, "ReviewSprint", niek);
+stan.AddUserToSprint(grindSchool, "ReviewSprint", stan);
+stan.AddUserToSprint(grindSchool, "ReviewSprint", stijn);
+stan.CreateReport(grindSchool, "ReviewSprint", new ExportPNG());
+
+// F22
+stan.AssignUserToProject(grindSchool, niek);
+Console.WriteLine(niek.ToString());
+Console.WriteLine(stan.ToString());
+Console.WriteLine(stijn.ToString());

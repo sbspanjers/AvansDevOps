@@ -2,5 +2,5 @@
 
 public interface IExportMethod
 {
-    void Export();
+    void Export(Sprint sprint);
 }

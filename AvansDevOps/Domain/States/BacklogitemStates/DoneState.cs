@@ -14,6 +14,10 @@ public class DoneState : IBacklogitemState
         this._backlogItem.Sprint.NotifySubscribers(_backlogItem.getName() + " has been moved to Done", new GeneralRule());
     }
 
+    public void AddCommentToBacklogItemReviewThread(string text, User user)
+    {
+        Console.WriteLine("Comment not possible in Done state.");
+    }
 
     public void EditMetaDataBacklogitem()
     {

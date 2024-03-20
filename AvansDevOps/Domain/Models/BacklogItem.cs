@@ -9,14 +9,14 @@ public class BacklogItem
     private string _description;
     private List<SubTask> _subTasks;
     public Sprint Sprint { get; set; }
-    private IBacklogitemState _state;
+    public IBacklogitemState State { get; private set; }
     private Project _project;
     public ReviewThread ReviewThread { get; set; } = null!;
 
     public BacklogItem(string name, string description, Project project)
     { 
         _subTasks = new List<SubTask>();
-        _state = new ToDoState(this);
+        State = new ToDoState(this);
 
         _name = name;
         _description = description;
@@ -29,12 +29,12 @@ public class BacklogItem
 
     public void SetState(IBacklogitemState state)
     {
-        _state = state;
+        State = state;
     }
 
     public void NextState()
     {
-        _state.NextPhase();
+        State.NextPhase();
     }
 
     public void SetSprint(Sprint sprint)

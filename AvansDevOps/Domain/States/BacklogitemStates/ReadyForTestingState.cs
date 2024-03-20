@@ -6,13 +6,18 @@ namespace AvansDevOps.Domain.States.BacklogitemStates;
 
 public class ReadyForTestingState : IBacklogitemState
 {
-    private BacklogItem _backlogitem;
+    private BacklogItem _backlogItem;
 
-    public ReadyForTestingState(BacklogItem backlogitem)
+    public ReadyForTestingState(BacklogItem backlogItem)
     {
-        this._backlogitem = backlogitem;
-        this._backlogitem.Sprint.NotifySubscribers(_backlogitem.getName() + " has been moved to Ready for testing", new TesterRule());
+        this._backlogItem = backlogItem;
+        this._backlogItem.Sprint.NotifySubscribers(_backlogItem.getName() + " has been moved to Ready for testing", new TesterRule());
 
+    }
+
+    public void AddCommentToBacklogItemReviewThread(string text, User user)
+    {
+        _backlogItem.ReviewThread.Comments.Add(Comment.CreateComment(text, user));
     }
 
     public void EditMetaDataBacklogitem()
@@ -32,6 +37,6 @@ public class ReadyForTestingState : IBacklogitemState
 
     public void NextPhase()
     {
-        _backlogitem.SetState(new TestedState(_backlogitem));
+        _backlogItem.SetState(new TestedState(_backlogItem));
     }
 }

@@ -7,16 +7,16 @@ public class Project
 {
     private List<Sprint> _sprints;
     private List<BacklogItem> _backlogItems;
-    private string _name;
+    public string Name { get; set; }
     private IGit _gitFunctions;
-    private ProductOwner ProductOwner;
+    private ProductOwner _productOwner;
     public Pipeline Pipeline { get; set; }
 
     public Project(string name, Pipeline pipeline, IGit git)
     {
         this.Pipeline = pipeline;
         this._gitFunctions = git;
-        this._name = name;
+        this.Name = name;
         this._backlogItems = new();
         this._sprints = new();
     }
@@ -56,9 +56,22 @@ public class Project
         return this._sprints.FirstOrDefault(x => x.Name == name)!;
     }
 
+    public void AddUserToProject(User user)
+    {   
+        if (user is ProductOwner)
+        {
+            this._productOwner = (ProductOwner)user;
+        }
+    }
+
+    public ProductOwner GetProductOwner()
+    {
+        return this._productOwner;
+    }
+
     public override string ToString()
     {
         //return the project and the sprints with details of the sprint
-        return $"Project: {this._name} \nSprints: {string.Join(", ", this._sprints.Select(x => x.ToString()))}";
+        return $"Project: {this.Name} \nSprints: {string.Join(", ", this._sprints.Select(x => x.ToString()))}";
     }
 }
