@@ -6,12 +6,12 @@ namespace AvansDevOps.Domain.States.BacklogitemStates;
 
 public class DoneState : IBacklogitemState
 {
-    private BacklogItem _backlogitem;
+    private BacklogItem _backlogItem;
 
     public DoneState(BacklogItem backlogitem)
     {
-        this._backlogitem = backlogitem;
-        this._backlogitem.Sprint.NotifySubscribers(_backlogitem.getName() + " has been moved to Done", new GeneralRule());
+        this._backlogItem = backlogitem;
+        this._backlogItem.Sprint.NotifySubscribers(_backlogItem.getName() + " has been moved to Done", new GeneralRule());
     }
 
 
@@ -22,12 +22,12 @@ public class DoneState : IBacklogitemState
 
     public void GoToReadyForTesting()
     {
-        throw new NotImplementedException();
+        _backlogItem.SetState(new ReadyForTestingState(_backlogItem));
     }
 
     public void GoToToDo()
     {
-        throw new NotImplementedException();
+        _backlogItem.SetState(new ToDoState(_backlogItem));
     }
 
     public void NextPhase()

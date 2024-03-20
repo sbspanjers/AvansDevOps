@@ -84,9 +84,16 @@ stan.AddBacklogItemToSprint(grindSchool, "Item2", grindSchool.GetSprint("ReviewS
 
 
 
-stan.CreateReview(grindSchool, "ReviewSprint", "Dit is een review");
 stan.MoveSprintToNextPhase(grindSchool, "ReviewSprint"); //CreatedState -> StartedState
 stan.MoveSprintToNextPhase(grindSchool, "ReviewSprint"); //StartedState -> FinishedState
+stan.CreateReview(grindSchool, "ReviewSprint", "Dit is een review");
+
+// F17
+User stijn = new Scrummaster() { Name = "Stijn" };
+stan.UploadDocumentToFinishReviewSpint(grindSchool, "ReviewSprint", "Dit is een document", "Dit is de content van het document");
+
+// F18
+
 //Console.WriteLine(grindSchool.GetSprint("ReviewSprint").ToString());
 
 //Forum forum = new Forum();

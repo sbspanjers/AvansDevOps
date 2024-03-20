@@ -6,12 +6,12 @@ namespace AvansDevOps.Domain.States.BacklogitemStates;
 
 public class DoingState : IBacklogitemState
 {
-    private BacklogItem _backlogitem;
+    private BacklogItem _backlogItem;
 
     public DoingState(BacklogItem backlogitem)
     {
-        this._backlogitem = backlogitem;
-        this._backlogitem.Sprint.NotifySubscribers(_backlogitem.getName() + " has been moved to doing", new GeneralRule());
+        this._backlogItem = backlogitem;
+        this._backlogItem.Sprint.NotifySubscribers(_backlogItem.getName() + " has been moved to doing", new GeneralRule());
     }
     
     public void EditMetaDataBacklogitem()
@@ -26,11 +26,11 @@ public class DoingState : IBacklogitemState
 
     public void GoToToDo()
     {
-        throw new NotImplementedException();
+        _backlogItem.SetState(new ToDoState(_backlogItem));
     }
 
     public void NextPhase()
     {
-        _backlogitem.SetState(new ReadyForTestingState(_backlogitem));
+        _backlogItem.SetState(new ReadyForTestingState(_backlogItem));
     }
 }

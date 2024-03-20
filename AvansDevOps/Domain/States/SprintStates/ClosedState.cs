@@ -41,4 +41,9 @@ public class ClosedState : ISprintState
     {
         return "ClosedState";
     }
+
+    public void UploadDocument(string documentName, string documentContent)
+    {
+        Console.WriteLine("Sprint is already closed.");
+    }
 }

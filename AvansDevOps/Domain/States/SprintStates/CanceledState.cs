@@ -41,4 +41,9 @@ public class CanceledState : ISprintState
     {
         return "CanceledState";
     }
+
+    public void UploadDocument(string documentName, string documentContent)
+    {
+        throw new NotImplementedException();
+    }
 }

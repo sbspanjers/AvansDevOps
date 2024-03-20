@@ -14,14 +14,15 @@ public class AfterFinishedState : ISprintState
     public void FinishSprint()
     {
         deploySucces = this._sprint.FinishSprint();
-        if(deploySucces == false)
+        if (!deploySucces)
         {
             this._sprint.SetSprintState(new ErrorState(this._sprint));
-        } else
+        }
+        else
         {
             this._sprint.SetSprintState(new ClosedState(this._sprint));
         }
-        
+
     }
 
     public Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate)
@@ -37,10 +38,9 @@ public class AfterFinishedState : ISprintState
 
     public void NextPhase()
     {
-        if(deploySucces)
-        {
-            this._sprint.SetSprintState(new ClosedState(this._sprint));
-        }
+
+        this._sprint.SetSprintState(new ClosedState(this._sprint));
+
     }
 
     public override string ToString()
@@ -51,5 +51,10 @@ public class AfterFinishedState : ISprintState
     public void CreateReview(string message)
     {
         Console.WriteLine("Review not possible.");
+    }
+
+    public void UploadDocument(string documentName, string documentContent)
+    {
+        
     }
 }

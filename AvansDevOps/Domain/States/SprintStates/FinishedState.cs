@@ -35,11 +35,17 @@ public class FinishedState : ISprintState
 
     public void CreateReview(string message)
     {
-        this._sprint.CreateReview(message);
+        Console.WriteLine("REVIEW: " + message);
     }
 
     public void FinishSprint()
     {
         throw new NotImplementedException();
+    }
+
+    public void UploadDocument(string documentName, string documentContent)
+    {
+        Console.WriteLine(documentName + " uploaded.");
+        _sprint.SetSprintState(new ClosedState(_sprint));
     }
 }

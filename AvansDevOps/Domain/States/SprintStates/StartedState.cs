@@ -44,4 +44,9 @@ public class StartedState : ISprintState
     {
         return "StartedState";
     }
+
+    public void UploadDocument(string documentName, string documentContent)
+    {
+        throw new NotImplementedException();
+    }
 }

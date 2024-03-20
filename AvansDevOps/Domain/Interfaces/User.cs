@@ -105,7 +105,7 @@ public abstract class User
 
     public void CreateReview(Project project, string sprintName, string message)
     {
-        project.GetSprint(sprintName).CreateReview(message);
+        project.GetSprint(sprintName).CreateReview(message); 
     }
 
     public void CancelOrBackToFinishPipeline(Project project, string sprintName, bool repeat)
@@ -119,4 +119,6 @@ public abstract class User
             project.GetSprint(sprintName).NextPhase();
         }
     }
+
+    public abstract void UploadDocumentToFinishReviewSpint(Project project, string sprintName, string documentName, string documentContent);
 }

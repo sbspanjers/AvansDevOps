@@ -14,4 +14,10 @@ public class Scrummaster : User
     {
         project.Pipeline.Start(project.GetSprint(sprintName));
     }
+
+    public override void UploadDocumentToFinishReviewSpint(Project project, string sprintName, string documentName, string documentContent)
+    {
+        Sprint sprint = project.GetSprint(sprintName);
+        sprint.GetState().UploadDocument(documentName, documentContent);
+    }
 }
