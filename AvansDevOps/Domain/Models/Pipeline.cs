@@ -15,19 +15,20 @@ public class Pipeline
         this.devOps = new DevOpsAdapter();
     }
 
-    public void Start(Sprint sprint)
+    public bool Start(Sprint sprint)
     {
         int random = new Random().Next(0, 2); 
         // can go well
-        if(false)
+        if(random == 1)
         {
             devOps.Deploy();
+            return true;
         }
         else
         {
             //FAILED - notify the team via the sprint
             sprint.NotifySubscribers("The pipeline has failed", new ScrummasterRule());
-          
+            return false;
         }
         
 

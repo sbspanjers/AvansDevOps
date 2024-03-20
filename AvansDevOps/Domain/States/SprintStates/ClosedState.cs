@@ -22,7 +22,12 @@ public class ClosedState : ISprintState
         return this._sprint;
     }
 
-    public void GotToFinishedState()
+    public void FinishSprint()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void GotToAfterFinishedState()
     {
         Console.WriteLine("Sprint is already closed.");
     }

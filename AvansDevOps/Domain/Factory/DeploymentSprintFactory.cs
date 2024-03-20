@@ -1,4 +1,5 @@
 ﻿using AvansDevOps.Domain.Interfaces;
+using AvansDevOps.Domain.Models;
 
 namespace AvansDevOps.Domain.Factory;
 

@@ -17,14 +17,15 @@ public class FinishedState : ISprintState
         return this._sprint;
     }
 
-    public void GotToFinishedState()
+    public void GotToAfterFinishedState()
     {
         Console.WriteLine("Sprint already in finished state.");
     }
 
     public void NextPhase()
-    {
-        this._sprint.SetSprintState(new AfterFinishedState(this._sprint));
+    {   
+
+        this._sprint.SetSprintState(new AfterFinishedState(this._sprint)).FinishSprint();
     }
 
     public override string ToString()
@@ -35,5 +36,10 @@ public class FinishedState : ISprintState
     public void CreateReview(string message)
     {
         this._sprint.CreateReview(message);
+    }
+
+    public void FinishSprint()
+    {
+        throw new NotImplementedException();
     }
 }

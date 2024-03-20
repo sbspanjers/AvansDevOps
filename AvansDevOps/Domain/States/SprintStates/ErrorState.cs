@@ -22,14 +22,22 @@ public class ErrorState : ISprintState
         return this._sprint;
     }
 
-    public void GotToFinishedState()
+    public void FinishSprint()
     {
-        this._sprint.SetSprintState(new FinishedState(this._sprint));
+        Console.WriteLine("Finish sprint not possible.");
+    }
+
+    public void GotToAfterFinishedState()
+    {
+        Console.WriteLine("Releasing again");
+        this._sprint.SetSprintState(new AfterFinishedState(this._sprint)).FinishSprint();
     }
 
     public void NextPhase()
     {
-        Console.WriteLine("Sprint is in error state.");
+
+        //Go to cancel
+        this._sprint.SetSprintState(new CanceledState(this._sprint));
     }
 
     public override string ToString()

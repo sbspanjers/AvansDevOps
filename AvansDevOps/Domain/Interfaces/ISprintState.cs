@@ -6,9 +6,11 @@ public interface ISprintState
 
     Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate);
 
-    void GotToFinishedState();
+    void GotToAfterFinishedState();
 
     string ToString();
 
     void CreateReview(string message);
+
+    void FinishSprint();
 }

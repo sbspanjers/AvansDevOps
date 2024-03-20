@@ -41,11 +41,9 @@ public abstract class User
 
     public Sprint CreateSprint(Project project, string sprintName, DateTime startDate, DateTime endDate, SprintFactory sprintFactory)
     {
-        project.SetSprintFactory(sprintFactory);
 
-        Sprint createdSprint =  project.CreateSprint(sprintName, startDate, endDate);
+        Sprint createdSprint =  project.CreateSprint(sprintName, startDate, endDate, sprintFactory);
         createdSprint.Users.Add( new Scrummaster() { Name = "Stijn" }); //Moet nog gefixt worden
-        createdSprint.Pipeline = project.Pipeline;
 
         return project.GetSprint(sprintName);
     }
@@ -57,7 +55,7 @@ public abstract class User
 
     public string SeeCurrentSprintState(Project project, string sprintName)
     {
-        return project.GetSprint(sprintName).ToString()!;
+        return project.GetSprint(sprintName).GetState().ToString();
     }
 
     public void MoveSprintToNextPhase(Project project, string sprintName)
@@ -65,9 +63,14 @@ public abstract class User
         project.GetSprint(sprintName).NextPhase();
     }
 
-    public void ConnectDeploymentSprintToPipeline(Project project, string sprintName)
+    public void ConnectDeploymentSprintToPipelineOfProject(Project project, string sprintName)
     {
         project.GetSprint(sprintName).Pipeline = project.Pipeline;
+    }
+
+    public void ConnectPipelineToSprint(Project project, string sprintName, Pipeline pipeline)
+    {
+        project.GetSprint(sprintName).Pipeline = pipeline;
     }
 
     public ReviewThread CreateReviewThread(Project project, string backlogItemName, string threadTitle, Forum forum)
@@ -79,8 +82,8 @@ public abstract class User
         reviewThread.BacklogItem = backlogItem;
 
         forum.Threads.Add(reviewThread);
-
-        return backlogItem.ReviewThread = reviewThread;
+        backlogItem.ReviewThread = reviewThread;
+        return reviewThread;
     }
 
     public Comment AddCommentToReviewThread(ReviewThread reviewThread, string text)
@@ -105,5 +108,15 @@ public abstract class User
         project.GetSprint(sprintName).CreateReview(message);
     }
 
-
+    public void CancelOrBackToFinishPipeline(Project project, string sprintName, bool repeat)
+    {
+        if(repeat)
+        {
+            project.GetSprint(sprintName).GetState().GotToAfterFinishedState();
+        }
+        else
+        {
+            project.GetSprint(sprintName).NextPhase();
+        }
+    }
 }

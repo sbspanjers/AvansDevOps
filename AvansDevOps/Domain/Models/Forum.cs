@@ -8,4 +8,9 @@ public class Forum
     {
         this.Threads = new List<ReviewThread>();
     }
+    public override string ToString()
+    {
+        //Return each thread in the forum by name and the contents
+        return string.Join("\n", this.Threads.Select(thread => thread.ToString()));
+    }
 }

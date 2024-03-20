@@ -5,16 +5,23 @@ namespace AvansDevOps.Domain.States.SprintStates;
 public class AfterFinishedState : ISprintState
 {
     private Sprint _sprint;
-
+    private bool deploySucces = false;
     public AfterFinishedState(Sprint sprint)
     {
         _sprint = sprint;
-        FinishSprint();
     }
 
-    private void FinishSprint()
+    public void FinishSprint()
     {
-        this._sprint.FinishSprint();
+        deploySucces = this._sprint.FinishSprint();
+        if(deploySucces == false)
+        {
+            this._sprint.SetSprintState(new ErrorState(this._sprint));
+        } else
+        {
+            this._sprint.SetSprintState(new ClosedState(this._sprint));
+        }
+        
     }
 
     public Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate)
@@ -23,14 +30,17 @@ public class AfterFinishedState : ISprintState
         return this._sprint;
     }
 
-    public void GotToFinishedState()
+    public void GotToAfterFinishedState()
     {
         Console.WriteLine("Sprint is already finished.");
     }
 
     public void NextPhase()
     {
-        this._sprint.SetSprintState(new ClosedState(this._sprint));
+        if(deploySucces)
+        {
+            this._sprint.SetSprintState(new ClosedState(this._sprint));
+        }
     }
 
     public override string ToString()

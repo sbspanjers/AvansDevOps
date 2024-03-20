@@ -30,9 +30,10 @@ public abstract class Sprint : IPublisher
     }
    
 
-    public void SetSprintState(ISprintState sprintState)
+    public ISprintState SetSprintState(ISprintState sprintState)
     {
         this._sprintState = sprintState;
+        return sprintState;
     }
 
     public void AddBacklogItem(BacklogItem backlogItem)
@@ -60,7 +61,7 @@ public abstract class Sprint : IPublisher
         this._exportMethod.Export();
     }
 
-    public abstract void FinishSprint();
+    public abstract bool FinishSprint();
     public abstract void CreateReview(string message);
 
     public void AddSubscriber(ISubscriber subscriber)
@@ -90,5 +91,10 @@ public abstract class Sprint : IPublisher
     {
         //Return the name, start date and end date of the sprint and the current state of the sprint  and the backlog items by name and description each one should start on a new line
         return $"Sprint: {this.Name}\nStart date: {this.StartDate}\nEnd date: {this.EndDate}\nState: {this._sprintState}\nBacklog items:\n{string.Join("\n", this.BacklogItems.Select(x => x.ToString()))}";
+    }
+
+    public ISprintState GetState()
+    {
+        return this._sprintState;
     }
 }

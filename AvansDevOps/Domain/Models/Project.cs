@@ -9,7 +9,6 @@ public class Project
     private List<BacklogItem> _backlogItems;
     private string _name;
     private IGit _gitFunctions;
-    private SprintFactory _sprintFactory;
     private ProductOwner ProductOwner;
     public Pipeline Pipeline { get; set; }
 
@@ -21,9 +20,9 @@ public class Project
         this._backlogItems = new();
         this._sprints = new();
     }
-    public Sprint CreateSprint(string name, DateTime startDate, DateTime endDate)
+    public Sprint CreateSprint(string name, DateTime startDate, DateTime endDate, SprintFactory sprintFactory)
     {
-        Sprint sprint = this._sprintFactory.CreateSprint(name, startDate, endDate);
+        Sprint sprint = sprintFactory.CreateSprint(name, startDate, endDate);
         this._sprints.Add(sprint);
         return sprint;
     }
@@ -32,11 +31,6 @@ public class Project
     {
         this._backlogItems.Add(backlogItem);
         return backlogItem;
-    }
-
-    public void SetSprintFactory(SprintFactory sprintFactory)
-    {
-        this._sprintFactory = sprintFactory;
     }
 
     public List<BacklogItem> GetBacklogItems()

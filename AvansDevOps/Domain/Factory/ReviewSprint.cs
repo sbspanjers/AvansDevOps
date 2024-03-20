@@ -4,14 +4,21 @@ namespace AvansDevOps.Domain.Factory;
 
 public class ReviewSprint : Sprint
 {
-    public override void FinishSprint()
+    public ReviewSprint(string name, DateTime startDate, DateTime endDate) : base(name, startDate, endDate)
+    {
+        
+    }
+
+    public override bool FinishSprint()
     {
         Console.WriteLine("File uploaded for review sprint.");
         _sprintState.NextPhase();
+        //TODO Kijk hier naar
+        return true;
     }
 
     public override void CreateReview(string message)
     {
-        Console.WriteLine("Review created.");
+        Console.WriteLine($"REVIEW: {message}");
     }
 }
