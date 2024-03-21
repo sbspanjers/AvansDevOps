@@ -30,7 +30,10 @@
     <Folder Include="Domain\Observer\" />
     <Folder Include="Domain\States\BacklogitemStates\" />
     <Folder Include="Domain\States\SprintStates\" />
-    <Folder Include="Domain\Users\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AvansDevOps\AvansDevOps.csproj" />
   </ItemGroup>
 
 </Project>
