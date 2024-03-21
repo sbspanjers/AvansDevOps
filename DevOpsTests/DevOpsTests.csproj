@@ -20,4 +20,17 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Domain\Interfaces\" />
+    <Folder Include="Domain\Models\" />
+    <Folder Include="Domain\Factory\" />
+    <Folder Include="Domain\Adapter\" />
+    <Folder Include="Domain\Export\" />
+    <Folder Include="Domain\Rules\" />
+    <Folder Include="Domain\Observer\" />
+    <Folder Include="Domain\States\BacklogitemStates\" />
+    <Folder Include="Domain\States\SprintStates\" />
+    <Folder Include="Domain\Users\" />
+  </ItemGroup>
+
 </Project>
