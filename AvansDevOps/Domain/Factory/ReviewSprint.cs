@@ -9,7 +9,7 @@ public class ReviewSprint : Sprint
         
     }
 
-    public override bool FinishSprint()
+    public override bool FinishSprint(bool deploySuccess)
     {
         
         _sprintState.NextPhase();

@@ -18,9 +18,9 @@ public class Scrummaster : User
         project.Pipeline.Cancel(project.GetSprint(sprintName));
     }
 
-    public void StartPipeline(Project project, string sprintName)
+    public void StartPipeline(Project project, string sprintName, bool deploySuccess)
     {
-        project.Pipeline.Start(project.GetSprint(sprintName));
+        project.Pipeline.Start(project.GetSprint(sprintName), deploySuccess);
     }
 
     public override void UploadDocumentToFinishReviewSpint(Project project, string sprintName, string documentName, string documentContent)

@@ -11,9 +11,9 @@ public class AfterFinishedState : ISprintState
         _sprint = sprint;
     }
 
-    public void FinishSprint()
+    public void FinishSprint(bool deploySuccess)
     {
-        deploySucces = this._sprint.FinishSprint();
+        deploySucces = this._sprint.FinishSprint(deploySuccess);
         if (!deploySucces)
         {
             this._sprint.SetSprintState(new ErrorState(this._sprint));
@@ -31,7 +31,7 @@ public class AfterFinishedState : ISprintState
         return this._sprint;
     }
 
-    public void GotToAfterFinishedState()
+    public void GotToAfterFinishedState(bool deploySuccess)
     {
         Console.WriteLine("Sprint is already finished.");
     }

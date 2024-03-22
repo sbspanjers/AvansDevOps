@@ -110,11 +110,11 @@ public abstract class User
         project.GetSprint(sprintName).CreateReview(message); 
     }
 
-    public void CancelOrBackToFinishPipeline(Project project, string sprintName, bool repeat)
+    public void CancelOrBackToFinishPipeline(Project project, string sprintName, bool repeat, bool deploySuccess)
     {
         if(repeat)
         {
-            project.GetSprint(sprintName).GetState().GotToAfterFinishedState();
+            project.GetSprint(sprintName).GetState().GotToAfterFinishedState(deploySuccess);
         }
         else
         {

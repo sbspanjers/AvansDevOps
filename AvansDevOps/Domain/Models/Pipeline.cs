@@ -15,11 +15,9 @@ public class Pipeline
         this.devOps = new DevOpsAdapter();
     }
 
-    public bool Start(Sprint sprint)
+    public bool Start(Sprint sprint, bool deploySuccess)
     {
-        int random = new Random().Next(0, 2); 
-        // can go well
-        if(random == 1)
+        if(deploySuccess)
         {
             devOps.Deploy();
             return true;
@@ -30,8 +28,6 @@ public class Pipeline
             sprint.NotifySubscribers("The pipeline has failed", new ScrummasterRule());
             return false;
         }
-        
-
     }
 
     public void Cancel(Sprint sprint)

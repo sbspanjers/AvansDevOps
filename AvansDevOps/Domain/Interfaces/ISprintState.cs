@@ -6,13 +6,13 @@ public interface ISprintState
 
     Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate);
 
-    void GotToAfterFinishedState();
+    void GotToAfterFinishedState(bool deploySuccess);
 
     string ToString();
 
     void CreateReview(string message);
 
-    void FinishSprint();
+    void FinishSprint(bool deploySuccess);
 
     void UploadDocument(string documentName, string documentContent);
 }

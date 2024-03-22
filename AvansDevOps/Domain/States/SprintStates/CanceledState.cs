@@ -22,12 +22,12 @@ public class CanceledState : ISprintState
         return this._sprint;
     }
 
-    public void FinishSprint()
+    public void FinishSprint(bool deploySuccess)
     {
         throw new NotImplementedException();
     }
 
-    public void GotToAfterFinishedState()
+    public void GotToAfterFinishedState(bool deploySuccess)
     {
         Console.WriteLine("Sprint is already cancelled.");
     }

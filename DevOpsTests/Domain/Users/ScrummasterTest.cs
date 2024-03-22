@@ -2,6 +2,7 @@
 using AvansDevOps.Domain.Factory;
 using AvansDevOps.Domain.Interfaces;
 using AvansDevOps.Domain.Models;
+using AvansDevOps.Domain.Observer.Subscribers;
 using AvansDevOps.Domain.States.SprintStates;
 using AvansDevOps.Domain.Users;
 
@@ -77,13 +78,44 @@ public class ScrummasterTest
         Project project = new Project("test", pipeline, git);
         Scrummaster user = new Scrummaster();
 
-        // Act
-        // wordt nu random gefaald
-        //user.StartPipeline(project, "test");
+        using (StringWriter sw = new StringWriter())
+        {
+            Console.SetOut(sw);
 
-        // Assert
-        Assert.True(true);
+            // Act
+            user.StartPipeline(project, "test", true);
+
+            // Assert
+            string expectedOutput = $"DEVOPS_SYSTEM: Deploy";
+
+            Assert.Contains(expectedOutput, sw.ToString());
+        }
     }
 
+    [Fact]
+    public void TestFail_StartPipeline()
+    {
+        // Arrange
+        Pipeline pipeline = new Pipeline();
+        IGit git = new GitAdapter();
+        Project project = new Project("test", pipeline, git);
+        Scrummaster user = new Scrummaster();
+        Sprint sprint = project.CreateSprint("test", DateTime.Now, DateTime.Now.AddDays(14), new DeploymentSprintFactory());
+        sprint.AddUserToSprint(user);
+        sprint.SetSprintState(new FinishedState(sprint));
+        sprint.AddSubscriber(new WhatsappSubscriber());
 
+        using (StringWriter sw = new StringWriter())
+        {
+            Console.SetOut(sw);
+
+            // Act
+            user.StartPipeline(project, "test", false);
+
+            // Assert
+            string expectedOutput = $"The pipeline has failed";
+
+            Assert.Contains(expectedOutput, sw.ToString());
+        }
+    }
 }

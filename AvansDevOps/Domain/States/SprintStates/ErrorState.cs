@@ -22,15 +22,15 @@ public class ErrorState : ISprintState
         return this._sprint;
     }
 
-    public void FinishSprint()
+    public void FinishSprint(bool deploySuccess)
     {
         Console.WriteLine("Finish sprint not possible.");
     }
 
-    public void GotToAfterFinishedState()
+    public void GotToAfterFinishedState(bool deploySuccess)
     {
         Console.WriteLine("Releasing again");
-        this._sprint.SetSprintState(new AfterFinishedState(this._sprint)).FinishSprint();
+        this._sprint.SetSprintState(new AfterFinishedState(this._sprint)).FinishSprint(deploySuccess);
     }
 
     public void NextPhase()

@@ -9,9 +9,9 @@ public class DeploymentSprint : Sprint
     public DeploymentSprint(string name, DateTime startDate, DateTime endDate) : base(name, startDate, endDate)
     {
     }
-    public override bool FinishSprint()
+    public override bool FinishSprint(bool deploySuccess)
     {
-       return Pipeline.Start(this);
+       return Pipeline.Start(this, deploySuccess);
     }
 
     public override void CreateReview(string message)

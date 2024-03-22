@@ -74,7 +74,7 @@ public abstract class Sprint : IPublisher
         method.Export(this);
     }
 
-    public abstract bool FinishSprint();
+    public abstract bool FinishSprint(bool deploySuccess);
     public abstract void CreateReview(string message);
 
     public void AddSubscriber(ISubscriber subscriber)
