@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="Domain\Interfaces\" />
     <Folder Include="Domain\Models\" />
-    <Folder Include="Domain\Adapter\" />
     <Folder Include="Domain\Observer\" />
     <Folder Include="Domain\States\BacklogitemStates\" />
     <Folder Include="Domain\States\SprintStates\" />

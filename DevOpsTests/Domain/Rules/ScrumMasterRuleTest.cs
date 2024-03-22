@@ -119,4 +119,26 @@ public class ScrumMasterRuleTest
         // Assert
         Assert.Empty(result);
     }
+
+    [Fact]
+    public void POScrumerRuleFilter()
+    {
+        // Arrange
+        INotifyRule rule = new POScrummasterRule();
+        User po = new ProductOwner();
+        User dev = new Developer();
+        User sm = new Scrummaster();
+        User test = new Tester();
+
+        List<User> users = new() { po, dev, sm, test };
+
+        // Act
+        var result = rule.Filter(users);
+
+        // Assert contains sm and po
+        Assert.Contains(sm, result);
+        Assert.Contains(po, result);
+        Assert.DoesNotContain(dev, result);
+        Assert.DoesNotContain(test, result);
+    }
 }
