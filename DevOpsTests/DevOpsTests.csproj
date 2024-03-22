@@ -27,12 +27,6 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\Interfaces\" />
-    <Folder Include="Domain\Models\" />
-    <Folder Include="Domain\Observer\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AvansDevOps\AvansDevOps.csproj" />
   </ItemGroup>
 

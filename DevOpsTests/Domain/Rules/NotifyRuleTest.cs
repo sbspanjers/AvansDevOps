@@ -1,16 +1,10 @@
-﻿using AvansDevOps.Domain.Factory;
-using AvansDevOps.Domain.Interfaces;
+﻿using AvansDevOps.Domain.Interfaces;
 using AvansDevOps.Domain.Rules.NotifyRule;
 using AvansDevOps.Domain.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevOpsTests.Domain.Rules;
 
-public class ScrumMasterRuleTest
+public class NotifyRuleTest
 {
     [Fact]
     public void ScrumMasterRuleFilter()

@@ -66,11 +66,14 @@ public class DeploymentSprintTest
     public void TestToStringDeploymentSprint()
     {
         // Arrange
-        Sprint sprint = new DeploymentSprint("Sprint", DateTime.Now, DateTime.Now.AddDays(14));
+        Sprint sprint = new DeploymentSprint("SprintName", DateTime.Now, DateTime.Now.AddDays(14));
+        Pipeline pipeline = new Pipeline();
+        sprint.Pipeline = pipeline;
+
         // Act
         string result = sprint.ToString();
         // Assert
-        Assert.Contains("Deployment", result);
+        Assert.Contains("SprintName", result);
     }
 
 }

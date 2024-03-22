@@ -1,11 +1,6 @@
 ﻿using AvansDevOps.Domain.Export;
 using AvansDevOps.Domain.Factory;
 using AvansDevOps.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevOpsTests.Domain.Export;
 

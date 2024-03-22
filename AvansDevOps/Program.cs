@@ -6,120 +6,120 @@ using AvansDevOps.Domain.Models;
 using AvansDevOps.Domain.Observer.Subscribers;
 using AvansDevOps.Domain.Users;
 
-//F01
+////F01
 
 
 
 User stan = new ProductOwner() { Name = "Stan"};
 
 
-Pipeline pipeline = new Pipeline() { Name="release pipeline"};
-// F13 Pipeline instellen
-Project grindSchool = stan.CreateProject("GrindSchool", pipeline, new GitAdapter());
+//Pipeline pipeline = new Pipeline() { Name="release pipeline"};
+//// F13 Pipeline instellen
+//Project grindSchool = stan.CreateProject("GrindSchool", pipeline, new GitAdapter());
 
-// F03
-BacklogItem backlogItem1 = stan.CreateBacklogItem(grindSchool,"Item1", "Create a new website");
-BacklogItem backlogItem2 = stan.CreateBacklogItem(grindSchool,"Item2", "Create a new app");
+//// F03
+//BacklogItem backlogItem1 = stan.CreateBacklogItem(grindSchool,"Item1", "Create a new website");
+//BacklogItem backlogItem2 = stan.CreateBacklogItem(grindSchool,"Item2", "Create a new app");
 
-//  F02
-//foreach (var item in grindSchool.GetBacklogItems())
-//{
-//    Console.WriteLine(item.ToString());
-//}
+////  F02
+////foreach (var item in grindSchool.GetBacklogItems())
+////{
+////    Console.WriteLine(item.ToString());
+////}
 
-// F04
-stan.EditBacklogItem(grindSchool, "Item2", "Create a new API", new List<SubTask>() { new SubTask("Create database"), new SubTask("Deploy to Heroku") });
-//foreach (var item in grindSchool.GetBacklogItems())
-//{
-//    Console.WriteLine(item.ToString());
-//}
+//// F04
+//stan.EditBacklogItem(grindSchool, "Item2", "Create a new API", new List<SubTask>() { new SubTask("Create database"), new SubTask("Deploy to Heroku") });
+////foreach (var item in grindSchool.GetBacklogItems())
+////{
+////    Console.WriteLine(item.ToString());
+////}
 
-// F06
-stan.CreateSprint(grindSchool, "Sprint 1", DateTime.Now, DateTime.Now.AddDays(14), new DeploymentSprintFactory());
-//Console.WriteLine(grindSchool.ToString());
+//// F06
+//stan.CreateSprint(grindSchool, "Sprint 1", DateTime.Now, DateTime.Now.AddDays(14), new DeploymentSprintFactory());
+////Console.WriteLine(grindSchool.ToString());
 
-// F07
-stan.EditSprint(grindSchool, "Sprint 1", DateTime.Now, DateTime.Now.AddDays(14), "sprintertje 1");
-//stan.ConnectDeploymentSprintToPipelineOfProject(grindSchool, "sprintertje 1");
-//Console.WriteLine(grindSchool.ToString());
+//// F07
+//stan.EditSprint(grindSchool, "Sprint 1", DateTime.Now, DateTime.Now.AddDays(14), "sprintertje 1");
+////stan.ConnectDeploymentSprintToPipelineOfProject(grindSchool, "sprintertje 1");
+////Console.WriteLine(grindSchool.ToString());
 
-// F08
-stan.AddBacklogItemToSprint(grindSchool, "Item1", grindSchool.GetSprint("sprintertje 1"));
-stan.AddBacklogItemToSprint(grindSchool, "Item2", grindSchool.GetSprint("sprintertje 1"));
-//Console.WriteLine(grindSchool.ToString());
+//// F08
+//stan.AddBacklogItemToSprint(grindSchool, "Item1", grindSchool.GetSprint("sprintertje 1"));
+//stan.AddBacklogItemToSprint(grindSchool, "Item2", grindSchool.GetSprint("sprintertje 1"));
+////Console.WriteLine(grindSchool.ToString());
 
-// F09
-grindSchool.GetSprint("sprintertje 1").AddSubscriber(new WhatsappSubscriber());
-//stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1");// CreatedState -> StartedState
-//stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1"); // StartedState -> FinishedState
-//stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1"); // FinishedState -> AfterFinishedState -> CancelledState
+//// F09
+//grindSchool.GetSprint("sprintertje 1").AddSubscriber(new WhatsappSubscriber());
+////stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1");// CreatedState -> StartedState
+////stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1"); // StartedState -> FinishedState
+////stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1"); // FinishedState -> AfterFinishedState -> CancelledState
 
-//Expected fase is AfterFinishedState
-//Console.WriteLine(grindSchool.ToString());
+////Expected fase is AfterFinishedState
+////Console.WriteLine(grindSchool.ToString());
 
-// F10
-//Console.WriteLine(stan.SeeCurrentSprintState(grindSchool, "sprintertje 1"));
+//// F10
+////Console.WriteLine(stan.SeeCurrentSprintState(grindSchool, "sprintertje 1"));
 
-// F11
-//stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1"); // AfterFinishedState -> ClosedState (deploy successful) || AfterFinishedState -> CancelledState (deploy failed)
-//Console.WriteLine(grindSchool.ToString());
+//// F11
+////stan.MoveSprintToNextPhase(grindSchool, "sprintertje 1"); // AfterFinishedState -> ClosedState (deploy successful) || AfterFinishedState -> CancelledState (deploy failed)
+////Console.WriteLine(grindSchool.ToString());
 
-// F12
-//Console.WriteLine(grindSchool.ToString());
+//// F12
+////Console.WriteLine(grindSchool.ToString());
 
-// F14
-//stan.CancelOrBackToFinishPipeline(grindSchool, "sprintertje 1", true);
-//Console.WriteLine(grindSchool.ToString()); // Closed || Error
+//// F14
+////stan.CancelOrBackToFinishPipeline(grindSchool, "sprintertje 1", true);
+////Console.WriteLine(grindSchool.ToString()); // Closed || Error
 
-// F15
+//// F15
 
-Pipeline testPipeline = new Pipeline() { Name= "test pipeline"};
-stan.ConnectPipelineToSprint(grindSchool, "sprintertje 1", testPipeline);
-//Console.WriteLine(grindSchool.GetSprint("sprintertje 1").ToString());
-
-
-// F16
-stan.CreateSprint(grindSchool, "ReviewSprint", DateTime.Now, DateTime.Now.AddDays(14), new ReviewSprintFactory());
-stan.AddBacklogItemToSprint(grindSchool, "Item1", grindSchool.GetSprint("ReviewSprint"));
-stan.AddBacklogItemToSprint(grindSchool, "Item2", grindSchool.GetSprint("ReviewSprint"));
+//Pipeline testPipeline = new Pipeline() { Name= "test pipeline"};
+//stan.ConnectPipelineToSprint(grindSchool, "sprintertje 1", testPipeline);
+////Console.WriteLine(grindSchool.GetSprint("sprintertje 1").ToString());
 
 
+//// F16
+//stan.CreateSprint(grindSchool, "ReviewSprint", DateTime.Now, DateTime.Now.AddDays(14), new ReviewSprintFactory());
+//stan.AddBacklogItemToSprint(grindSchool, "Item1", grindSchool.GetSprint("ReviewSprint"));
+//stan.AddBacklogItemToSprint(grindSchool, "Item2", grindSchool.GetSprint("ReviewSprint"));
 
-stan.MoveSprintToNextPhase(grindSchool, "ReviewSprint"); //CreatedState -> StartedState
-stan.MoveSprintToNextPhase(grindSchool, "ReviewSprint"); //StartedState -> FinishedState
-stan.CreateReview(grindSchool, "ReviewSprint", "Dit is een review");
 
-// F17
-User stijn = new Scrummaster() { Name = "Stijn" };
-//stijn.UploadDocumentToFinishReviewSpint(grindSchool, "ReviewSprint", "Dit is een document", "Dit is de content van het document");
 
-Console.WriteLine(grindSchool.GetSprint("ReviewSprint").ToString());
+//stan.MoveSprintToNextPhase(grindSchool, "ReviewSprint"); //CreatedState -> StartedState
+//stan.MoveSprintToNextPhase(grindSchool, "ReviewSprint"); //StartedState -> FinishedState
+//stan.CreateReview(grindSchool, "ReviewSprint", "Dit is een review");
 
-// F18
-Forum forum = new Forum();
-var thread = stan.CreateReviewThread(grindSchool, "Item1", "Review thread", forum);
-stan.MoveBacklogItemToNextState(grindSchool, "Item1"); // Todo -> doing
-stan.MoveBacklogItemToNextState(grindSchool, "Item1"); // Doing -> ReadyForTesting
-stan.MoveBacklogItemToNextState(grindSchool, "Item1"); // ReadyForTesting -> Tested
-stan.AddCommentToReviewThread(thread, "Dit is een noob feature");
-stan.MoveBacklogItemToNextState(grindSchool, "Item1"); // Tested -> Done
+//// F17
+//User stijn = new Scrummaster() { Name = "Stijn" };
+////stijn.UploadDocumentToFinishReviewSpint(grindSchool, "ReviewSprint", "Dit is een document", "Dit is de content van het document");
 
-Console.WriteLine(forum.ToString());
+//Console.WriteLine(grindSchool.GetSprint("ReviewSprint").ToString());
 
-// F19 & F20
+//// F18
+//Forum forum = new Forum();
+//var thread = stan.CreateReviewThread(grindSchool, "Item1", "Review thread", forum);
+//stan.MoveBacklogItemToNextState(grindSchool, "Item1"); // Todo -> doing
+//stan.MoveBacklogItemToNextState(grindSchool, "Item1"); // Doing -> ReadyForTesting
+//stan.MoveBacklogItemToNextState(grindSchool, "Item1"); // ReadyForTesting -> Tested
+//stan.AddCommentToReviewThread(thread, "Dit is een noob feature");
+//stan.MoveBacklogItemToNextState(grindSchool, "Item1"); // Tested -> Done
+
+//Console.WriteLine(forum.ToString());
+
+//// F19 & F20
+////stan.CreateReport(grindSchool, "ReviewSprint", new ExportPNG());
+
+//// F21
+//User niek = new Scrummaster() { Name = "Niek" };
+
+//stan.AddUserToSprint(grindSchool, "ReviewSprint", stan);
+//stan.AddUserToSprint(grindSchool, "ReviewSprint", niek);
+//stan.AddUserToSprint(grindSchool, "ReviewSprint", stan);
+//stan.AddUserToSprint(grindSchool, "ReviewSprint", stijn);
 //stan.CreateReport(grindSchool, "ReviewSprint", new ExportPNG());
 
-// F21
-User niek = new Scrummaster() { Name = "Niek" };
-
-stan.AddUserToSprint(grindSchool, "ReviewSprint", stan);
-stan.AddUserToSprint(grindSchool, "ReviewSprint", niek);
-stan.AddUserToSprint(grindSchool, "ReviewSprint", stan);
-stan.AddUserToSprint(grindSchool, "ReviewSprint", stijn);
-stan.CreateReport(grindSchool, "ReviewSprint", new ExportPNG());
-
-// F22
-stan.AssignUserToProject(grindSchool, niek);
-Console.WriteLine(niek.ToString());
-Console.WriteLine(stan.ToString());
-Console.WriteLine(stijn.ToString());
+//// F22
+//stan.AssignUserToProject(grindSchool, niek);
+//Console.WriteLine(niek.ToString());
+//Console.WriteLine(stan.ToString());
+//Console.WriteLine(stijn.ToString());
