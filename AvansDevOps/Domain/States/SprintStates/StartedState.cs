@@ -19,9 +19,6 @@ public class StartedState : ISprintState
     public Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate)
     {
         this._sprint.Name = name;
-        this._sprint.StartDate = startDate;
-        this._sprint.EndDate = endDate;
-
         return this._sprint;
     }
 
