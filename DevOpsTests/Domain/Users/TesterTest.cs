@@ -33,12 +33,17 @@ public class TesterTest
         Project project = new Project("test", pipeline, git);
         User user = new Tester();
 
-        // Act
-        user.UploadDocumentToFinishReviewSpint(project, "test", "test", "test");
+        using (StringWriter sw = new StringWriter())
+        {
+            Console.SetOut(sw);
 
-        // Assert
-        Assert.True(true);
+            // Act
+            user.UploadDocumentToFinishReviewSpint(project, "testSprint", "test", "test");
 
-        //hier valt weinig te testen, aangezien de methode alleen een console.writeline aanroept
+            // Assert
+            string expectedOutput = $"{user.Name} doesn't have permissions for this action.";
+
+            Assert.Contains(expectedOutput, sw.ToString());
+        }
     }
 }

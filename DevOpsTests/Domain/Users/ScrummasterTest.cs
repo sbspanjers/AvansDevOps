@@ -37,12 +37,19 @@ public class ScrummasterTest
         Sprint sprint = project.GetSprint("testSprint");
         sprint.SetSprintState(new FinishedState(sprint));
 
-        // Act
-        user.UploadDocumentToFinishReviewSpint(project, "testSprint", "test", "test");
+        using (StringWriter sw = new StringWriter())
+        {
+            Console.SetOut(sw);
 
-        // Assert
-        Assert.True(true);
+            // Act
+            user.UploadDocumentToFinishReviewSpint(project, "testSprint", "test", "test");
 
+            // Assert
+            string expectedOutput = "test uploaded.";
+
+            Assert.Contains(expectedOutput, sw.ToString());
+            Assert.True(sprint.GetState() is ClosedState);
+        }
     }
 
     [Fact]

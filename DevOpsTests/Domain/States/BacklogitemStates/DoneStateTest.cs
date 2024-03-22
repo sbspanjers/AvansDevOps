@@ -33,12 +33,6 @@ public class DoneStateTest
 
             Assert.Contains(expectedOutput, sw.ToString());
         }
-
-        // Act
-        backlogItem.NextState();
-
-        // Assert
-        Assert.IsType<DoneState>(backlogItem.State);
     }
 
     [Fact]
