@@ -15,7 +15,7 @@ public class Pipeline
         this.devOps = new DevOpsAdapter();
     }
 
-    public bool Start(Sprint sprint)
+    public virtual bool Start(Sprint sprint)
     {
         int random = new Random().Next(0, 2); 
         // can go well
