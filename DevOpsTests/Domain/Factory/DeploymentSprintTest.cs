@@ -21,11 +21,11 @@ public class DeploymentSprintTest
         // Arrange
         DeploymentSprint sprint = new DeploymentSprint("Sprint", DateTime.Now, DateTime.Now.AddDays(14));
         var pipelineMock = new Mock<Pipeline>();
-        pipelineMock.Setup(x => x.Start(It.IsAny<Sprint>())).Returns(true);
+        pipelineMock.Setup(x => x.Start(It.IsAny<Sprint>(), true)).Returns(true);
         sprint.Pipeline = pipelineMock.Object;
                 
         // Act
-        var result = sprint.FinishSprint();
+        var result = sprint.FinishSprint(true);
 
         // Assert
         Assert.True(result);
@@ -37,11 +37,11 @@ public class DeploymentSprintTest
         // Arrange
         Sprint sprint = new DeploymentSprint("Sprint", DateTime.Now, DateTime.Now.AddDays(14));
         var pipelineMock = new Mock<Pipeline>();
-        pipelineMock.Setup(x => x.Start(It.IsAny<Sprint>())).Returns(false);
+        pipelineMock.Setup(x => x.Start(It.IsAny<Sprint>(), true)).Returns(false);
         sprint.Pipeline = pipelineMock.Object;
 
         // Act
-        var result = sprint.FinishSprint();
+        var result = sprint.FinishSprint(true);
 
         // Assert
         Assert.False(result);

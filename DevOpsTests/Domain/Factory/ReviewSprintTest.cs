@@ -33,11 +33,11 @@ public class ReviewSprintTest
         // Arrange
         Sprint sprint = new ReviewSprint("Sprint", DateTime.Now, DateTime.Now.AddDays(14));
         var pipelineMock = new Mock<Pipeline>();
-        pipelineMock.Setup(x => x.Start(It.IsAny<Sprint>())).Returns(true);
+        pipelineMock.Setup(x => x.Start(It.IsAny<Sprint>(), true)).Returns(true);
         sprint.Pipeline = pipelineMock.Object;
                 
         // Act
-        var result = sprint.FinishSprint();
+        var result = sprint.FinishSprint(true);
 
         // Assert
         Assert.True(result);

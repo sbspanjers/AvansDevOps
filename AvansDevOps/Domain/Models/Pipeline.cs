@@ -15,7 +15,7 @@ public class Pipeline
         this.devOps = new DevOpsAdapter();
     }
 
-    public bool Start(Sprint sprint, bool deploySuccess)
+    public virtual bool Start(Sprint sprint, bool deploySuccess)
     {
         if(deploySuccess)
         {
