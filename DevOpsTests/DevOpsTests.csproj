@@ -19,6 +19,11 @@
   <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
+	<ItemGroup>
+		<None Update="xunit.runner.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
   <ItemGroup>
     <Folder Include="Domain\Interfaces\" />
