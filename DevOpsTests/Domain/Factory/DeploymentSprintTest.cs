@@ -62,5 +62,15 @@ public class DeploymentSprintTest
         Assert.Contains(expectedOutput, sw.ToString());
     }
 
+    [Fact]
+    public void TestToStringDeploymentSprint()
+    {
+        // Arrange
+        Sprint sprint = new DeploymentSprint("Sprint", DateTime.Now, DateTime.Now.AddDays(14));
+        // Act
+        string result = sprint.ToString();
+        // Assert
+        Assert.Contains("Deployment", result);
+    }
 
 }
