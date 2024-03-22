@@ -13,7 +13,7 @@ public class ClosedState : ISprintState
 
     public void CreateReview(string message)
     {
-        Console.WriteLine("Review not possible.");
+        Console.WriteLine("Review not possible in a closed state");
     }
 
     public Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate)
@@ -29,7 +29,7 @@ public class ClosedState : ISprintState
 
     public void GotToAfterFinishedState(bool deploySuccess)
     {
-        Console.WriteLine("Sprint is already closed.");
+        Console.WriteLine("Sprint is already closed in this state");
     }
 
     public void NextPhase()
@@ -44,6 +44,6 @@ public class ClosedState : ISprintState
 
     public void UploadDocument(string documentName, string documentContent)
     {
-        Console.WriteLine("Sprint is already closed.");
+        Console.WriteLine("Sprint is already closed so you are not able to upload");
     }
 }
