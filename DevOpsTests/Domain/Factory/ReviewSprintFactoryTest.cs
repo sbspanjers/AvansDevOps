@@ -10,14 +10,13 @@ using System.Threading.Tasks;
 
 namespace DevOpsTests.Domain.Factory;
 
-public class FactoryTest
+public class ReviewSprintFactoryTest
 {
-
     [Fact]
-    public void TestCreateDeploymentSprint()
+    public void TestCreateReviewSprint()
     {
         // Arrange
-        var sprintFactory = new DeploymentSprintFactory();
+        SprintFactory sprintFactory = new ReviewSprintFactory();
         var project = new Project("Test", new Pipeline(), new GitAdapter());
         var sprint = project.CreateSprint("Test", DateTime.Now, DateTime.Now, sprintFactory);
 
@@ -26,6 +25,7 @@ public class FactoryTest
 
         // Assert
         Assert.NotNull(result);
-        Assert.IsType<DeploymentSprint>(result);
+        Assert.Equal(sprint, result);
+        Assert.IsType<ReviewSprint>(result);
     }
 }

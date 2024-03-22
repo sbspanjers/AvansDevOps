@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -24,8 +24,6 @@
     <Folder Include="Domain\Interfaces\" />
     <Folder Include="Domain\Models\" />
     <Folder Include="Domain\Adapter\" />
-    <Folder Include="Domain\Export\" />
-    <Folder Include="Domain\Rules\" />
     <Folder Include="Domain\Observer\" />
     <Folder Include="Domain\States\BacklogitemStates\" />
     <Folder Include="Domain\States\SprintStates\" />
