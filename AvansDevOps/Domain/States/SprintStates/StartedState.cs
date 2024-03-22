@@ -25,7 +25,6 @@ public class StartedState : ISprintState
     public void FinishSprint(bool deploySuccess)
     {
         Console.WriteLine("Sprint is in a started state");
-        throw new NotImplementedException();
     }
 
     public void GotToAfterFinishedState(bool deploySuccess)

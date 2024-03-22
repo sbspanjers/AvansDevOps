@@ -21,7 +21,7 @@ public class CanceledStateTest
             sprint.GetState().CreateReview("Test");
 
             // Assert
-            string expectedOutput = "Review not possible.";
+            string expectedOutput = "Review not possible";
 
             Assert.Contains(expectedOutput, sw.ToString());
         }
@@ -68,7 +68,7 @@ public class CanceledStateTest
             sprint.GetState().GotToAfterFinishedState(true);
 
             // Assert
-            string expectedOutput = "Sprint is already cancelled.";
+            string expectedOutput = "Sprint is already cancelled";
 
             Assert.Contains(expectedOutput, sw.ToString());
         }

@@ -22,7 +22,7 @@ public class StartedStateTest
             sprint.GetState().CreateReview("test");
 
             // Assert
-            string expectedOutput = $"Review not possible.";
+            string expectedOutput = $"Review not possible";
 
             Assert.Contains(expectedOutput, sw.ToString());
         }
@@ -50,8 +50,18 @@ public class StartedStateTest
         Sprint sprint = new DeploymentSprint("STest", DateTime.Now, DateTime.Now.AddDays(14));
         sprint.SetSprintState(new StartedState(sprint));
 
-        // Act & Assert
-        Assert.Throws<NotImplementedException>(() => sprint.GetState().FinishSprint(true));
+        using (StringWriter sw = new StringWriter())
+        {
+            Console.SetOut(sw);
+
+            // Act
+            sprint.GetState().FinishSprint(true);
+
+            // Assert
+            string expectedOutput = "Sprint is in a started state";
+
+            Assert.Contains(expectedOutput, sw.ToString());
+        }
     }
 
     [Fact]
@@ -69,7 +79,7 @@ public class StartedStateTest
             sprint.GetState().GotToAfterFinishedState(true);
 
             // Assert
-            string expectedOutput = "Sprint is in started state.";
+            string expectedOutput = "Sprint is in started state";
 
             Assert.Contains(expectedOutput, sw.ToString());
         }

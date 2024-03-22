@@ -21,7 +21,7 @@ public class ClosedStateTest
             sprint.GetState().CreateReview("Test");
 
             // Assert
-            string expectedOutput = "Review not possible.";
+            string expectedOutput = "Review not possible";
 
             Assert.Contains(expectedOutput, sw.ToString());
         }
@@ -68,7 +68,7 @@ public class ClosedStateTest
             sprint.GetState().GotToAfterFinishedState(true);
 
             // Assert
-            string expectedOutput = "Sprint is already closed.";
+            string expectedOutput = "Sprint is already closed";
 
             Assert.Contains(expectedOutput, sw.ToString());
         }
@@ -124,7 +124,7 @@ public class ClosedStateTest
             sprint.GetState().UploadDocument("testDoc", "content");
 
             // Assert
-            string expectedOutput = "Sprint is already closed.";
+            string expectedOutput = "Sprint is already closed";
 
             Assert.Contains(expectedOutput, sw.ToString());
         }
