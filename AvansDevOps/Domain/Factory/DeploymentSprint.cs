@@ -9,6 +9,7 @@ public class DeploymentSprint : Sprint
     public DeploymentSprint(string name, DateTime startDate, DateTime endDate) : base(name, startDate, endDate)
     {
     }
+
     public override bool FinishSprint()
     {
        return Pipeline.Start(this);

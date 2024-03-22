@@ -19,15 +19,13 @@ public class DeploymentSprintTest
     public void TestCreateFinishSprintReturnsTrueDeploymentSprint()
     {
         // Arrange
-        Sprint sprint = new DeploymentSprint("Sprint", DateTime.Now, DateTime.Now.AddDays(14));
+        DeploymentSprint sprint = new DeploymentSprint("Sprint", DateTime.Now, DateTime.Now.AddDays(14));
         var pipelineMock = new Mock<Pipeline>();
         pipelineMock.Setup(x => x.Start(It.IsAny<Sprint>())).Returns(true);
         sprint.Pipeline = pipelineMock.Object;
-
-           
-
+                
         // Act
-        var result = pipelineMock.Object.Start(sprint);
+        var result = sprint.FinishSprint();
 
         // Assert
         Assert.True(result);
@@ -43,7 +41,7 @@ public class DeploymentSprintTest
         sprint.Pipeline = pipelineMock.Object;
 
         // Act
-        var result = pipelineMock.Object.Start(sprint);
+        var result = sprint.FinishSprint();
 
         // Assert
         Assert.False(result);
@@ -52,8 +50,6 @@ public class DeploymentSprintTest
     [Fact]
     public void CreateReviewTestDeploymentSprint()
     {
-
-
         // Arrange
         Sprint sprint = new DeploymentSprint("Sprint", DateTime.Now, DateTime.Now.AddDays(14));
         using StringWriter sw = new();
@@ -65,5 +61,6 @@ public class DeploymentSprintTest
         string expectedOutput = "Review not possible on a Deployment sprint.";
         Assert.Contains(expectedOutput, sw.ToString());
     }
+
 
 }
