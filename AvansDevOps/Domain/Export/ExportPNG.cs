@@ -7,11 +7,24 @@ public class ExportPNG : IExportMethod
     public void Export(Sprint sprint)
     {
         Console.WriteLine("Exporting to PNG...\n~~~~~~~~~~~~~~~~~~~~~~");
-        Console.WriteLine("Sprint: " + sprint.Name);
-        Console.WriteLine("Start date: " + sprint.StartDate);
-        Console.WriteLine("End date: " + sprint.EndDate);
-        Console.WriteLine("Backlog items: " + string.Join(", ", sprint.BacklogItems.Select(x => x.getName())));
-        Console.WriteLine("Users: " + string.Join(", ", sprint.Users.Select(x => x.Name)));
+        Console.WriteLine("Sprint Details:\n");
+        Console.WriteLine($"Sprint: {sprint.Name}");
+        Console.WriteLine($"Start date: {sprint.StartDate}");
+        Console.WriteLine($"End date: {sprint.EndDate}");
+
+        Console.WriteLine("\nBacklog Items:");
+        foreach (var item in sprint.BacklogItems)
+        {
+            Console.WriteLine("- " + item.getName());
+        }
+
+        Console.WriteLine("\nUsers:");
+        foreach (var user in sprint.Users)
+        {
+            Console.WriteLine("- " + user.Name);
+        }
+
         Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~\nExporting to PNG done!");
+
     }
 }
