@@ -13,7 +13,7 @@ public class CanceledState : ISprintState
 
     public void CreateReview(string message)
     {
-        Console.WriteLine("Review not possible.");
+        Console.WriteLine("Review not possible during the canceledState.");
     }
 
     public Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate)
@@ -29,7 +29,7 @@ public class CanceledState : ISprintState
 
     public void GotToAfterFinishedState(bool deploySuccess)
     {
-        Console.WriteLine("Sprint is already cancelled.");
+        Console.WriteLine("Sprint is already cancelled so it is not possible");
     }
 
     public void NextPhase()
