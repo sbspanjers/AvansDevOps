@@ -13,7 +13,7 @@ public class StartedState : ISprintState
 
     public void CreateReview(string message)
     {
-        Console.WriteLine("Review not possible.");
+        Console.WriteLine("Review not possible when in a started state");
     }
 
     public Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate)
@@ -27,12 +27,13 @@ public class StartedState : ISprintState
 
     public void FinishSprint(bool deploySuccess)
     {
+        Console.WriteLine("Sprint is in a started state");
         throw new NotImplementedException();
     }
 
     public void GotToAfterFinishedState(bool deploySuccess)
     {
-        Console.WriteLine("Sprint is in started state.");
+        Console.WriteLine("Sprint is in started state, not able to go to afterfinishedstate");
     }
 
     public void NextPhase()
