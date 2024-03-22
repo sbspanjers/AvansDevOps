@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DevOpsTests.Domain.Adapter;
 
-public class AdapterTest
+public class DevOpsAdapterTest
 {
     [Fact]
     public void DevOpsAdapterBuildTest()
@@ -104,6 +104,22 @@ public class AdapterTest
 
         devOps.GetUtilities();
         string expectedOutput = "Utility";
+
+        // Assert
+        Assert.Contains(expectedOutput, sw.ToString());
+    }
+
+    [Fact]
+    public void DevOpsAdapterRunTestsTest()
+    {
+        using StringWriter sw = new();
+        // Arrange
+        IAvansDevOps devOps = new DevOpsAdapter();
+        Console.SetOut(sw);
+        // Act
+
+        devOps.RunTests();
+        string expectedOutput = "Test";
 
         // Assert
         Assert.Contains(expectedOutput, sw.ToString());
