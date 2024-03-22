@@ -29,7 +29,6 @@
     <Folder Include="Domain\Interfaces\" />
     <Folder Include="Domain\Models\" />
     <Folder Include="Domain\Observer\" />
-    <Folder Include="Domain\States\SprintStates\" />
   </ItemGroup>
 
   <ItemGroup>

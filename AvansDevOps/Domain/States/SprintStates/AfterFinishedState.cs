@@ -22,7 +22,6 @@ public class AfterFinishedState : ISprintState
         {
             this._sprint.SetSprintState(new ClosedState(this._sprint));
         }
-
     }
 
     public Sprint EditSprintMetaData(string name, DateTime startDate, DateTime endDate)
@@ -55,6 +54,6 @@ public class AfterFinishedState : ISprintState
 
     public void UploadDocument(string documentName, string documentContent)
     {
-        
+        Console.WriteLine("Upload not possible.");
     }
 }

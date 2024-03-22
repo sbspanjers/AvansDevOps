@@ -35,8 +35,6 @@ public class ErrorState : ISprintState
 
     public void NextPhase()
     {
-
-        //Go to cancel
         this._sprint.SetSprintState(new CanceledState(this._sprint));
     }
 
